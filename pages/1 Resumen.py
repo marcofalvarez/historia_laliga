@@ -33,7 +33,7 @@ st.markdown(
 #hacer dos graficos
 col1, col2 = st.columns(2)
 
-df = tables.sunb_table('data\clasificacion.csv')
+df = tables.sunb_table('data/porcentajes.csv')
 #grafico de bara con equipos que han participado mas de 20 veces
 with col1:
     st.subheader(
@@ -65,7 +65,7 @@ with col1:
 
 # código para hacer el mapa con la ubicación de los estadios
     
-dm = tables.mapa_talbe('data\estadios.csv', 'data\clasificacion.csv')
+dm = tables.mapa_talbe('data/estadios.csv', 'data/clasificacion.csv')
 
 with col2:
     st.subheader('''Mapa de la ubicación de los equipos   ''')
@@ -121,7 +121,7 @@ with col2:
 
 
 
-dd = tables.cumsum_table("data\clasificacion.csv")
+dd = tables.cumsum_table("data/clasificacion.csv")
 eq = dd['Equipo'].unique().tolist()
 
 st.subheader('Cantidad de ligas ganadas por equipo a lo largo de los años')
