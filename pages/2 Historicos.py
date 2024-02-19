@@ -45,7 +45,7 @@ if tipo_datos == 'de ganadores de La Liga':
     #funcion para cargar la tabla excel
 
  
-    df = tables.part_table('data\clasificacion.csv')
+    df = tables.part_table('data/clasificacion.csv')
 
     #hacer el cuadro con los equipos escogidos
     formg = st.form(key='opciones_grafico')
@@ -115,7 +115,7 @@ else:
 '''
     )
     
-    df = tables.generic_tables('data\clasificacion.csv')
+    df = tables.generic_tables('data/clasificacion.csv')
 
     #hacer la tabla con los equipos esogidos por el usuario
     formeq = st.form(key='opciones_equipos')
