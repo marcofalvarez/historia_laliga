@@ -33,7 +33,7 @@ st.markdown(
 #hacer dos graficos
 col1, col2 = st.columns(2)
 
-df = tables.sunb_table('data/porcentajes.csv')
+df = tables.sunb_table('data/clasificacion.csv')
 #grafico de bara con equipos que han participado mas de 20 veces
 with col1:
     st.subheader(
