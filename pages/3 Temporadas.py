@@ -32,7 +32,7 @@ st.markdown(
     )
 #funcion para cargar la tabla excel
 
-df = tables.generic_tables("data\clasificacion.csv")
+df = tables.generic_tables("data/clasificacion.csv")
 # st.dataframe(data=df)
 
 
