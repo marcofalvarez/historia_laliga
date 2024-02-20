@@ -117,7 +117,7 @@ if make_table:
     equipos = pd.concat([equipo_seleccionado, equipos_similares])
     
     # Crear el gráfico de dispersión
-    fig_scatter = px.scatter(equipos, x='Media_goles_a_favor', y='Media_goles_en_contra', text='Equipo',
+    fig_scatter = px.scatter(equipos, x='Media_goles_a_favor', y='Media_goles_en_contra', size=equipos['Goles_a_favor'], text='Equipo',
         title=f'Media de goles a favor y goles en contra para {selec_team} y comparación con equipos similares',
         labels={'Media_goles_a_favor': 'Media de goles a favor', 'Media_goles_en_contra': 'Media de goles en contra'},
         hover_name='Equipo', color_discrete_sequence=['blue'])
@@ -132,7 +132,7 @@ if make_table:
     # Añadir anotación
     fig_scatter.add_annotation(x=50, y=50, text="Línea de equilibrio", showarrow=False, font=dict(color="red"))
 
-    fig_scatter.update_traces(marker=dict(size=equipos['Goles_a_favor'], color='#eaf6f6', opacity=0.8),
+    fig_scatter.update_traces(marker=dict(size=equipos['Goles_a_favor'], color='skyblue', opacity=0.8),
                              textfont=dict(color="#132743"),  # Cambiar el color del texto
                              textposition='top center')  # Colocar el texto encima del marcador
     
