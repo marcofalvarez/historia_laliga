@@ -120,7 +120,8 @@ if make_table:
     fig_scatter = px.scatter(equipos, x='Media_goles_a_favor', y='Media_goles_en_contra', size=equipos['Goles_a_favor'], text='Equipo',
         title=f'Media de goles a favor y goles en contra para {selec_team} y comparación con equipos similares',
         labels={'Media_goles_a_favor': 'Media de goles a favor', 'Media_goles_en_contra': 'Media de goles en contra'},
-        hover_name='Equipo', color_discrete_sequence=['blue'])
+        # hover_name='Equipo', 
+        color_discrete_sequence=['blue'])
 
     # Establecer los límites de los ejes x e y
     fig_scatter.update_xaxes(range=[0, 5], dtick=0.1)
