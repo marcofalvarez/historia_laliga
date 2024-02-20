@@ -4,26 +4,15 @@ import numpy as np
 import plotly.express as px
 import plotly.graph_objects as go 
 from plotly.subplots import make_subplots
-# from datetime import datetime
-# from datetime import date
+from datetime import datetime
+from datetime import date
+import os
 
 st.set_page_config(page_title= "Equipos",
                    page_icon= ":soccer:",
                    layout="wide")
 st.title("Estadísticas de equipos")
-st.markdown(
-        '''
-            ## Encuentra aquí información sobre tu equipo favorito!
-            Esta página te permite apresiar los detalles más importantes de cada equipo   
-                1- escoger el equipo de interese,    
-                2- ecoger el tipo de estádisticas  
-                3- hacer click en Vale!  
-                4- pasar el cursor sobre la gráfica (acción -hover)  
-                   para obtener el detalle de las estádisticas  
-                   dentro de las gráficas  
-                
-'''
-    )
+
 #funcion para cargar la tabla 
 @st.cache_data
 def data_upload():
@@ -35,14 +24,14 @@ df = data_upload()
 form1 = st.sidebar.form(key='opciones_tabla')
 team = df['Equipo'].unique()
 stat = []
-selec_team = form1.selectbox('ESCOGE UN EQUIPO', team)
+selec_team = form1.selectbox('ESCOGE UN EQUIPO', team, format_func=lambda x: f"{x}")
 selec_stat = form1.radio('ESCOJA EL TIPO DE ESTADÍSTICA',('TOTAL', 'LOCAL', 'VISITANTE'))
 if selec_stat == 'TOTAL':
-    stat = ['Equipo','Partidos_jugados','Partidos_ganados', 'Partidos_perdidos', 'Goles_a_favor', 'Goles_en_contra', 'Porcentaje_victorias', 'Porcentaje_derrotas', 'Media_goles_a_favor', 'Media_goles_en_contra']
+    stat = ['Equipo','Partidos_jugados','Partidos_ganados', 'Partidos_perdidos', 'Partidos_empatados', 'Goles_a_favor', 'Goles_en_contra', 'Porcentaje_victorias', 'Porcentaje_derrotas', 'Porcentaje_empates', 'Media_goles_a_favor', 'Media_goles_en_contra']
 elif selec_stat == 'LOCAL':
-    stat = ['Equipo','Total_partidos_jugados_casa', 'Partidos_ganados_casa', 'Partidos_perdidos_casa', 'Porcentaje_victorias_casa', 'Porcentaje_derrotas_casa']
+    stat = ['Equipo','Total_partidos_jugados_casa', 'Partidos_ganados_casa', 'Partidos_perdidos_casa', 'Partidos_empatados_casa', 'Porcentaje_victorias_casa', 'Porcentaje_derrotas_casa', 'Porcentaje_empates_casa']
 elif selec_stat == 'VISITANTE':
-    stat = ['Equipo','Total_partidos_jugados_fuera', 'Partidos_ganados_fuera', 'Partidos_perdidos_fuera', 'Porcentaje_victorias_fuera', 'Porcentaje_derrotas_fuera']
+    stat = ['Equipo','Total_partidos_jugados_fuera', 'Partidos_ganados_fuera', 'Partidos_perdidos_fuera', 'Partidos_empatados_fuera', 'Porcentaje_victorias_fuera', 'Porcentaje_derrotas_fuera', 'Porcentaje_empates_fuera']
 make_table = form1.form_submit_button('VALE!')
 
 if make_table:
@@ -51,34 +40,48 @@ if make_table:
     st.subheader(selec_team) 
     st.dataframe(data=df.loc[df['Equipo'] == selec_team, stat])
 
-# Crear el primer gráfico de donut para victorias y derrotas
-    if selec_stat == 'TOTAL':
-        porcentaje_victorias = df.loc[df['Equipo'] == selec_team, 'Porcentaje_victorias'].values[0]
-        porcentaje_derrotas = df.loc[df['Equipo'] == selec_team, 'Porcentaje_derrotas'].values[0]
-    elif selec_stat == 'LOCAL':
-         porcentaje_victorias = df.loc[df['Equipo'] == selec_team, 'Porcentaje_victorias_casa'].values[0]
-         porcentaje_derrotas = df.loc[df['Equipo'] == selec_team, 'Porcentaje_derrotas_casa'].values[0]
-    elif selec_stat == 'VISITANTE':
-        porcentaje_victorias = df.loc[df['Equipo'] == selec_team, 'Porcentaje_victorias_fuera'].values[0]
-        porcentaje_derrotas = df.loc[df['Equipo'] == selec_team, 'Porcentaje_derrotas_fuera'].values[0]
+    # Cargar los datos de los escudos
+    escudos_path = "data/ESCUDOS"
+    escudo_filename = f"{selec_team}.png"
+    escudo_path = os.path.join(escudos_path, escudo_filename)
 
-    fig_donut_victorias = go.Figure(data=[go.Pie(labels=['Victorias', 'Derrotas'],
-                                                     values=[porcentaje_victorias, porcentaje_derrotas])])
-    fig_donut_victorias.update_traces(hoverinfo='label', textinfo='value', textfont_size=20,
-                                           marker=dict(colors=['#2ecc71', '#e74c3c'], line=dict(color='#FFFFFF', width=2)))
-    fig_donut_victorias.update_layout(title_text="Victorias y derrotas",
-                                           title_font_size=24)
+    # Mostrar el escudo si existe
+    if os.path.exists(escudo_path):
+        st.image(escudo_path, caption=selec_team, width=100)
+
+    # Crear el primer gráfico de donut para victorias, derrotas y empates
+    if selec_stat == 'TOTAL':
+        victorias = df.loc[df['Equipo'] == selec_team, 'Partidos_ganados'].values[0]
+        derrotas = df.loc[df['Equipo'] == selec_team, 'Partidos_perdidos'].values[0]
+        empates = df.loc[df['Equipo'] == selec_team, 'Partidos_empatados'].values[0]
+    elif selec_stat == 'LOCAL':
+        victorias = df.loc[df['Equipo'] == selec_team, 'Partidos_ganados_casa'].values[0]
+        derrotas = df.loc[df['Equipo'] == selec_team, 'Partidos_perdidos_casa'].values[0]
+        empates = df.loc[df['Equipo'] == selec_team, 'Partidos_empatados_casa'].values[0]
+    elif selec_stat == 'VISITANTE':
+        victorias = df.loc[df['Equipo'] == selec_team, 'Partidos_ganados_fuera'].values[0]
+        derrotas = df.loc[df['Equipo'] == selec_team, 'Partidos_perdidos_fuera'].values[0]
+        empates = df.loc[df['Equipo'] == selec_team, 'Partidos_empatados_fuera'].values[0]
+
+    fig_donut_victorias = go.Figure(data=[go.Pie(labels=['Victorias', 'Derrotas', 'Empates'],
+                                         values=[victorias, derrotas, empates])])
+    fig_donut_victorias.update_traces(hoverinfo='label+value', textinfo='percent', textfont_size=20,
+                               marker=dict(colors=['#2ecc71', '#e74c3c', '#f39c12'], line=dict(color='#FFFFFF', width=2)))
+    fig_donut_victorias.update_layout(title_text="Victorias, derrotas y empates",
+                               title_font_size=24)
+    
 
     # Crear el segundo gráfico de donut para goles a favor y en contra
     goles_a_favor = df.loc[df['Equipo'] == selec_team, 'Goles_a_favor'].values[0]
     goles_en_contra = df.loc[df['Equipo'] == selec_team, 'Goles_en_contra'].values[0]
 
     fig_donut_goles = go.Figure(data=[go.Pie(labels=['Goles a favor', 'Goles en contra'],
-                                                values=[goles_a_favor, goles_en_contra])])
-    fig_donut_goles.update_traces(hoverinfo='label', textinfo='value', textfont_size=20,
-                                    marker=dict(colors=['#3498db', '#e74c3c'], line=dict(color='#FFFFFF', width=2)))
-    fig_donut_goles.update_layout(title_text="Goles a favor y en contra",
-                                    title_font_size=24)
+                                            values=[goles_a_favor, goles_en_contra])])
+    fig_donut_goles.update_traces(hoverinfo='label+value', textinfo='percent', textfont_size=20,
+                                   marker=dict(colors=['#3498db', '#e74c3c'], line=dict(color='#FFFFFF', width=2)))
+    fig_donut_goles.update_layout(title_text="Total de goles a favor y en contra",
+                                   title_font_size=24)
+
 
     # Dividir el espacio horizontalmente para colocar los gráficos uno al lado del otro
     col1, col2 = st.columns(2)
@@ -108,7 +111,7 @@ if make_table:
     df['Dif_goles_en_contra'] = abs(df['Media_goles_en_contra'] - equipo_seleccionado['Media_goles_en_contra'].iloc[0])
 
     # Ordenar el DataFrame por las diferencias calculadas y seleccionar los tres equipos más similares
-    equipos_similares = df.sort_values(by=['Dif_goles_a_favor', 'Dif_goles_en_contra']).iloc[1:4]  # Excluimos el equipo seleccionado
+    equipos_similares = df.sort_values(by=['Dif_goles_a_favor', 'Dif_goles_en_contra']).iloc[1:10]  # Excluimos el equipo seleccionado
 
     # Combinar el equipo seleccionado y los equipos similares
     equipos = pd.concat([equipo_seleccionado, equipos_similares])
@@ -142,7 +145,7 @@ if make_table:
     st.plotly_chart(fig_scatter)
 
     # Cargar los datos de los estadios
-    estadios_df = pd.read_csv("data/estadios.csv")
+    estadios_df = pd.read_csv("data/equipos_con_urls.csv")
     
     # Cargar los datos de los estadios
     estadio_seleccionado = estadios_df[estadios_df['Equipo'] == selec_team]
@@ -151,16 +154,41 @@ if make_table:
         # Renombrar las columnas de latitud y longitud
         estadio_seleccionado = estadio_seleccionado.rename(columns={'Latitud': 'lat', 'Longitud': 'lon'})
 
-        # Crear el mapa con Plotly Express
-        st.map(estadio_seleccionado)
-        
+        # Mostrar la ubicación del estadio y la imagen del estadio en columnas separadas
+        col1, col2 = st.columns(2)
+
+        # Columna 1: Mostrar el mapa
+        with col1:
+            st.subheader("UBICACION ESTADIO:")
+            st.map(estadio_seleccionado)
+
+        # Columna 2: Mostrar la imagen del estadio
+        with col2:
+            st.subheader("ESTADIO:")
+            estadio_image_path = os.path.join("data", "Estadios", f"{selec_team}.png")
+            if os.path.exists(estadio_image_path):
+                st.image(estadio_image_path, caption=selec_team,  width=800)
+            else:
+                st.warning("Imagen del estadio no encontrada.")
+
     else:
         st.warning("No se encontró información del estadio para el equipo seleccionado.")
 
 
 
+
     # Cargar los datos de los estadios
     clasificacion = pd.read_csv("data/clasificacion.csv")
+
+    # Agregar la parte fija a las URLs relativas
+    estadios_df['URL'] = 'https://es.wikipedia.org/' + estadios_df['URL']
+
+    # Obtener la URL del equipo seleccionado
+    url_equipo_seleccionado = estadios_df[estadios_df['Equipo'] == selec_team]['URL'].values[0]
+
+    # Mostrar el enlace encima de los gráficos de donut
+    st.markdown(f"[Más información sobre {selec_team} en Wikipedia]({url_equipo_seleccionado})")
+
 
     # Filtrar los datos para el equipo seleccionado desde la temporada 1987-88
     clasif_equipo_desde_1987 = clasificacion[(clasificacion['Equipo'] == selec_team) & (clasificacion['Temporada'] >= '1987-88')]
