@@ -12,7 +12,7 @@ st.set_page_config(page_title= "Temporadas",
                    page_icon= ":soccer:",
                    layout="wide")
 
-st.title("Result Tables")
+st.title("Resultados al final de temporada")
 #Use the menu on the right to customize the table that you want to display. 
 #Once the you are happy with your selection select Vale!. 
 st.markdown(
@@ -61,6 +61,32 @@ if make_table:
     st.dataframe(data=df[(df['Temporada'] == selec_temp) & (df['Posicion'].between(left=selec_pos[0], right=selec_pos[1], inclusive='both'))][stat])
            #columns_auto_size_mode=ColumnsAutoSizeMode.FIT_CONTENTS)
     
+    st.markdown(
+        '''
+            'PT':'Puntos Totales',  
+            'PJ':'Partidos Jugados',  
+            'PG':'Partidos Ganados',  
+            'PE':'Partidos Empatados',  
+            'PP':'Partidos Perdidos',  
+            'GF':'Goles a Favor',  
+            'GC':'Goles en Contra',  
+            'PT_C':'Puntos Totales (en casa)',  
+            'PJ_C':'Partidos Jugados (en casa)',  
+            'PG_C':'Partidos Ganados (en casa)',  
+            'PE_C':'Partidos Empatados (en casa)',  
+            'PP_C':'Partidos Perdidos (en casa)',  
+            'GF_C':'Goles a Favor (en casa)',  
+            'GC_C':'Goles en Contra (en casa)',  
+            'PT_F':'Puntos Totales (fuera de casa)',  
+            'PJ_F':'Partidos Jugados (fuera de casa)',  
+            'PG_F':'Partidos Ganados (fuera de casa)',  
+            'PE_F':'Partidos Empatados (fuera de casa)',  
+            'PP_F':'Partidos Perdidos (fuera de casa)',  
+            'GF_F':'Goles a Favor (fuera de casa)',  
+            'GC_F':'Goles en Contra (fuera de casa)'   
+
+        '''
+    )
 
     df_stat = df[(df['Temporada'] == selec_temp) & (df['Posicion'].between(left=selec_pos[0], right=selec_pos[1], inclusive='both'))][stat].reset_index()
     partidos = df_stat.columns[5:8]
@@ -96,11 +122,4 @@ if make_table:
 
     st.plotly_chart(gfig)
 
-df_part = df.groupby('Equipo').size().reset_index()
-df_part.rename(columns = {'Equipo':'Equipo', 0 :'Participación'}, inplace = True)
-barfig = px.bar(data_frame = df_part[(df_part["Participación"] >= 20)].sort_values("Participación", ascending = False),
-                x          = "Equipo",
-                y          = 'Participación',
-                #color      = 'Posicion',
-                title      = 'Número de participaciones en la 1era división'
-       )
+
