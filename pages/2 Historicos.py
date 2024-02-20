@@ -11,7 +11,7 @@ import pages.modules.preparing_tables as tables
 #titulo y configuración de la pagina
 st.set_page_config(page_title= "Históricos",
                    page_icon= ":soccer:",
-                   layout="centered")
+                   layout="wide")
 st.title("Estadísticas a lo largo de los años")
 
 #opciones al lado de la pagina para 2 tipos de visualizaciones
