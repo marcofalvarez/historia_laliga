@@ -115,7 +115,7 @@ else:
 '''
     )
     
-    df = tables.generic_tables('data/clasificacion.csv')
+    df = tables.generic_table1('data/clasificacion.csv')
 
     #hacer la tabla con los equipos esogidos por el usuario
     formeq = st.form(key='opciones_equipos')

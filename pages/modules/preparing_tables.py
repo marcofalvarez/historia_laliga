@@ -17,7 +17,43 @@ def data_upload(archivo):
     return df
 
 @st.cache_data
-def generic_tables(archivo):
+def generic_table1(archivo):
+    df = data_upload(archivo)
+    #cambiando el formato de la columna Temporada
+    df['Equipo'] = df['Equipo'].map(lambda x : "Espanyol" if x == "Español" else x)
+    df['Temp'] = df['Temporada'].map(lambda x : x.split("-")[0])
+    df['Temp'] = df['Temp'].astype(str)
+
+    df = df.loc[:,['Temporada', 'Temp','Posicion','Equipo','PT', 'PJ', 'PG', 'PE', 'PP', 'GF', 'GC', 'PT_C', 'PJ_C', 'PG_C',
+    'PE_C', 'PP_C', 'GF_C', 'GC_C', 'PT_F', 'PJ_F', 'PG_F', 'PE_F', 'PP_F',
+    'GF_F', 'GC_F']]
+    df.rename(columns = { 
+    'PT':'Puntos Totales',
+    'PJ':'Partidos Jugados',
+    'PG':'Partidos Ganados',
+    'PE':'Partidos Empatados',
+    'PP':'Partidos Perdidos',
+    'GF':'Goles a Favor',
+    'GC':'Goles en Contra',
+    'PT_C':'Puntos Totales (en casa)',
+    'PJ_C':'Partidos Jugados (en casa)',
+    'PG_C':'Partidos Ganados (en casa)',
+    'PE_C':'Partidos Empatados (en casa)',
+    'PP_C':'Partidos Perdidos (en casa)',
+    'GF_C':'Goles a Favor (en casa)',
+    'GC_C':'Goles en Contra (en casa)',
+    'PT_F':'Puntos Totales (fuera de casa)',
+    'PJ_F':'Partidos Jugados (fuera de casa)',
+    'PG_F':'Partidos Ganados (fuera de casa)',
+    'PE_F':'Partidos Empatados (fuera de casa)',
+    'PP_F':'Partidos Perdidos (fuera de casa)',
+    'GF_F':'Goles a Favor (fuera de casa)',
+    'GC_F':'Goles en Contra (fuera de casa)'
+    }, inplace=True)
+    return df
+
+@st.cache_data
+def generic_table2(archivo):
     df = data_upload(archivo)
     #cambiando el formato de la columna Temporada
     df['Equipo'] = df['Equipo'].map(lambda x : "Espanyol" if x == "Español" else x)
@@ -63,6 +99,29 @@ def part_table(_csv_file):
     df = df.loc[:,['Temporada', 'Temp','Posicion','Equipo','PT', 'PJ', 'PG', 'PE', 'PP', 'GF', 'GC', 'PT_C', 'PJ_C', 'PG_C',
         'PE_C', 'PP_C', 'GF_C', 'GC_C', 'PT_F', 'PJ_F', 'PG_F', 'PE_F', 'PP_F',
         'GF_F', 'GC_F']]
+    df.rename(columns = { 
+    'PT':'Puntos Totales',
+    'PJ':'Partidos Jugados',
+    'PG':'Partidos Ganados',
+    'PE':'Partidos Empatados',
+    'PP':'Partidos Perdidos',
+    'GF':'Goles a Favor',
+    'GC':'Goles en Contra',
+    'PT_C':'Puntos Totales (en casa)',
+    'PJ_C':'Partidos Jugados (en casa)',
+    'PG_C':'Partidos Ganados (en casa)',
+    'PE_C':'Partidos Empatados (en casa)',
+    'PP_C':'Partidos Perdidos (en casa)',
+    'GF_C':'Goles a Favor (en casa)',
+    'GC_C':'Goles en Contra (en casa)',
+    'PT_F':'Puntos Totales (fuera de casa)',
+    'PJ_F':'Partidos Jugados (fuera de casa)',
+    'PG_F':'Partidos Ganados (fuera de casa)',
+    'PE_F':'Partidos Empatados (fuera de casa)',
+    'PP_F':'Partidos Perdidos (fuera de casa)',
+    'GF_F':'Goles a Favor (fuera de casa)',
+    'GC_F':'Goles en Contra (fuera de casa)'
+    }, inplace=True)
     return df
 
 @st.cache_data
