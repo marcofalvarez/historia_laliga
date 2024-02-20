@@ -24,7 +24,7 @@ df = data_upload()
 form1 = st.sidebar.form(key='opciones_tabla')
 team = df['Equipo'].unique()
 stat = []
-selec_team = form1.selectbox('ESCOGE UN EQUIPO', team, format_func=lambda x: f"{x}")
+selec_team = form1.selectbox('ESCOGE UN EQUIPO', team) #, format_func=lambda x: f"{x}")
 selec_stat = form1.radio('ESCOJA EL TIPO DE ESTADÍSTICA',('TOTAL', 'LOCAL', 'VISITANTE'))
 if selec_stat == 'TOTAL':
     stat = ['Equipo','Partidos_jugados','Partidos_ganados', 'Partidos_perdidos', 'Partidos_empatados', 'Goles_a_favor', 'Goles_en_contra', 'Porcentaje_victorias', 'Porcentaje_derrotas', 'Porcentaje_empates', 'Media_goles_a_favor', 'Media_goles_en_contra']
@@ -115,7 +115,7 @@ if make_table:
 
     # Combinar el equipo seleccionado y los equipos similares
     equipos = pd.concat([equipo_seleccionado, equipos_similares])
-
+    
     # Crear el gráfico de dispersión
     fig_scatter = px.scatter(equipos, x='Media_goles_a_favor', y='Media_goles_en_contra', text='Equipo',
         title=f'Media de goles a favor y goles en contra para {selec_team} y comparación con equipos similares',
@@ -132,7 +132,7 @@ if make_table:
     # Añadir anotación
     fig_scatter.add_annotation(x=50, y=50, text="Línea de equilibrio", showarrow=False, font=dict(color="red"))
 
-    fig_scatter.update_traces(marker=dict(size=12, color='skyblue', opacity=0.8),
+    fig_scatter.update_traces(marker=dict(size=equipos['Goles_a_favor'], color='skyblue', opacity=0.8),
                              textfont=dict(color="white"),  # Cambiar el color del texto
                              textposition='top center')  # Colocar el texto encima del marcador
     
