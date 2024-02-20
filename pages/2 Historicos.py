@@ -114,18 +114,6 @@ else:
     with st.expander("Instrucciones"):
         st.markdown(
         '''       
-                1- Escoger una o más estadisticas que te interesen,  
-                2- hacer click en Vale!  
-                3- pasar el cursor sobre la gráfica (acción -hover)
-                   para saber más sobre el equipo ganador de cada
-                   temporada de La Liga  
-                4- puedes cambiar la resolución temporal mediante
-                   el menú a la cabeza de la gráfica o directamente
-                   en el control deslizante abajo de la gráfica.
-                   Desliza con tu mouse cuando el cursor muestre la
-                   doble flecha.
-        '''
-        )         
                 1- Escoger uno o más equipos que quieras comparar,  
                 2- Escoger una o más estadisticas que te interesen,  
                 3- hacer click en Vale!  

@@ -54,6 +54,7 @@ with col1:
                  )
     #sunfig.update_traces(textinfo = "label+percent parent")
     st.plotly_chart(sunfig)
+    
     with st.expander("Instrucciones"):
         st.markdown(
             '''
