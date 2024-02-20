@@ -21,7 +21,7 @@ st.markdown(
             ## Cuales son los actores más importantes y cuales son los trazos más importantes que han marcado la historia de La Liga ?
             
             Los siguientes gráficos te daran un resumen general de lo que ha pasado desde 1928.
-            En la historia de la liga han habido 71 equipos que han participado. Varios equipos han participado 
+            En la historia de la liga han habido 71 equipos que han participado. Varios equipos han participado
             continuamente en el torneo desde su inicio. 
             A pesar de haber tantos equipos que han participado consistentement, son muy pocos los que han ganado esta copa.
             Hemos escogido los equipos que han participado 20 veces o más para hacer las siguientes gráficas que muestran
@@ -57,7 +57,7 @@ with col1:
 
     st.markdown(
         '''
-            1- pasar el cursor sobre las gráfica (acción -hover) o hacer click en True/False para aprender más sobre 
+            1- pasar el cursor sobre las gráfica (acción -hover) o hacer click en True/False para aprender más sobre
             los participantes y ganadores de La Liga.
     '''
     )
@@ -113,9 +113,9 @@ with col2:
         '''
             1- el tamaño de las columans corresponde a la cantidad de veces que el equipo participó en
             La Liga. Pasar el cursor sobre mapa (acción -hover) para aprender más sobre los equipos.
-            Usa la rueda del ratón (acción -scroll), pinchar o click + movimiento del ratón para navegar  
+            Usa la rueda del ratón (acción -scroll), pinchar o click + movimiento del ratón para navegar
             en el mapa o hacer zoom.  
-            Ctr + click te permite cambiar el ángulo de observación en 3 dimensiones. 
+            Ctr + click te permite cambiar el ángulo de observación en 3 dimensiones.
             '''
     )
 

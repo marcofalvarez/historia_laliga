@@ -20,12 +20,12 @@ st.markdown(
             ## Esta es una ventana en el tiempo para cada temporada!
             Esta página te permite apresiar los detalles más importantes por temporada   
                 1- escoger la temporada que te interese,  
-                2- escoger cuales posiciones quieres ver  
+                2- escoger cuales posiciones quieres ver
                    (posición corresponde 1 al equipo ganador)  
                 3- ecoger el tipo de estádisticas  
                 4- hacer click en Vale!  
-                5- pasar el cursor sobre la gráfica (acción -hover)  
-                   para obtener el detalle de las estádisticas  
+                5- pasar el cursor sobre la gráfica (acción -hover)
+                   para obtener el detalle de las estádisticas
                    dentro de las gráficas  
                 
 '''
