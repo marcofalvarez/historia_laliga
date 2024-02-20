@@ -18,7 +18,14 @@ st.title("Resultados al final de temporada")
 st.markdown(
         '''
             ## Esta es una ventana en el tiempo para cada temporada!
-            Esta página te permite apresiar los detalles más importantes por temporada   
+            Esta página te permite apresiar los detalles más importantes por temporada  
+
+        '''
+)
+
+with st.expander("Instrucciones"):
+                st.markdown(
+        '''           
                 1- escoger la temporada que te interese,  
                 2- escoger cuales posiciones quieres ver
                    (posición corresponde 1 al equipo ganador)  
@@ -28,8 +35,8 @@ st.markdown(
                    para obtener el detalle de las estádisticas
                    dentro de las gráficas  
                 
-'''
-    )
+                '''
+                )
 #funcion para cargar la tabla excel
 
 df = tables.generic_table2("data/clasificacion.csv")
@@ -46,8 +53,9 @@ selec_pos = form1.slider(label='escoger una o más posiciones en la tabla', min_
 selec_stat = form1.radio('escojer el tipo de estadística',('total', 'en casa', 'de visitante'))
 if selec_stat == 'total':
     stat = ['Equipo','Posicion','PT', 'PJ', 'PG', 'PE', 'PP', 'GF','GC']
-    leyenda = (
-        '''
+    with st.expander("Leyenda"):
+          leyenda = (
+            '''
             'PT':'Puntos Totales',  
             'PJ':'Partidos Jugados',  
             'PG':'Partidos Ganados',  
@@ -55,12 +63,13 @@ if selec_stat == 'total':
             'PP':'Partidos Perdidos',  
             'GF':'Goles a Favor',  
             'GC':'Goles en Contra',  
-        '''
-    )
+            '''
+        )
 elif selec_stat == 'en casa':
     stat = ['Equipo','Posicion','PT_C', 'PJ_C', 'PG_C', 'PE_C', 'PP_C', 'GF_C', 'GC_C']
-    leyenda = (
-        '''
+    with st.expander("Leyenda"):
+          leyenda = (
+            '''
             'PT_C':'Puntos Totales (en casa)',  
             'PJ_C':'Partidos Jugados (en casa)',  
             'PG_C':'Partidos Ganados (en casa)',  
@@ -68,12 +77,13 @@ elif selec_stat == 'en casa':
             'PP_C':'Partidos Perdidos (en casa)',  
             'GF_C':'Goles a Favor (en casa)',  
             'GC_C':'Goles en Contra (en casa)',    
-        '''
-    )
+            '''
+        )
 elif selec_stat == 'de visitante':
     stat = ['Equipo','Posicion','PT_F', 'PJ_F', 'PG_F', 'PE_F', 'PP_F', 'GF_F', 'GC_F']
-    leyenda = (
-        '''
+    with st.expander("Leyenda"):
+          leyenda = (
+            '''
             'PT_F':'Puntos Totales (fuera de casa)',  
             'PJ_F':'Partidos Jugados (fuera de casa)',  
             'PG_F':'Partidos Ganados (fuera de casa)',  
@@ -81,8 +91,8 @@ elif selec_stat == 'de visitante':
             'PP_F':'Partidos Perdidos (fuera de casa)',  
             'GF_F':'Goles a Favor (fuera de casa)',  
             'GC_F':'Goles en Contra (fuera de casa)'      
-        '''
-    )
+            '''
+        )
 make_table = form1.form_submit_button('vale!')
 
 if make_table:

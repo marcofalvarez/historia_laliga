@@ -54,13 +54,13 @@ with col1:
                  )
     #sunfig.update_traces(textinfo = "label+percent parent")
     st.plotly_chart(sunfig)
-
-    st.markdown(
+    with st.expander("Instrucciones"):
+        st.markdown(
+            '''
+                1- pasar el cursor sobre las gráfica (acción -hover) o hacer click en True/False para aprender más sobre
+                los participantes y ganadores de La Liga.
         '''
-            1- pasar el cursor sobre las gráfica (acción -hover) o hacer click en True/False para aprender más sobre
-            los participantes y ganadores de La Liga.
-    '''
-    )
+        )
 
 
 # código para hacer el mapa con la ubicación de los estadios
@@ -109,7 +109,9 @@ with col2:
                     api_keys= {'mapbox': st.secrets['mapbox']}
                 )
     st.pydeck_chart(r)
-    st.markdown(
+    
+    with st.expander("Instrucciones"):
+        st.markdown(
         '''
             1- el tamaño de las columans corresponde a la cantidad de veces que el equipo participó en
             La Liga. Pasar el cursor sobre mapa (acción -hover) para aprender más sobre los equipos.
@@ -117,7 +119,7 @@ with col2:
             en el mapa o hacer zoom.  
             Ctr + click te permite cambiar el ángulo de observación en 3 dimensiones.
             '''
-    )
+        )       
 
 
 
