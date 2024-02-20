@@ -53,7 +53,9 @@ with col1:
                 #   title = "Quién ha ganado la liga"
                  )
     #sunfig.update_traces(textinfo = "label+percent parent")
-    st.plotly_chart(sunfig)
+    st.plotly_chart(sunfig, 
+                    use_container_width=True,
+                    )
     
     with st.expander("Instrucciones"):
         st.markdown(
@@ -109,7 +111,9 @@ with col2:
                         },
                     api_keys= {'mapbox': st.secrets['mapbox']}
                 )
-    st.pydeck_chart(r)
+    st.pydeck_chart(r, 
+                    use_container_width=True,
+                    )
     
     with st.expander("Instrucciones"):
         st.markdown(
@@ -152,4 +156,6 @@ fig = px.bar(dd,
 fig.update_layout(width=1000)
 fig.layout.updatemenus[0].buttons[0].args[1]['frame']['duration'] = 15
 fig.layout.updatemenus[0].buttons[0].args[1]['transition']['duration'] = 5
-st.plotly_chart(fig)
+st.plotly_chart(fig,
+                use_container_width=True,
+                )

@@ -138,6 +138,8 @@ if make_table:
     #   Set x-axis title
     gfig.update_xaxes(title_text="Diferencia de Goles")
 
-    st.plotly_chart(gfig)
+    st.plotly_chart(gfig,
+                    use_container_width=True,
+                    )
 
 

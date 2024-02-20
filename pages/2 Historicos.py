@@ -99,7 +99,9 @@ if tipo_datos == 'de ganadores de La Liga':
                 )
             )
         prfig.update_xaxes(title_text="Temporada")
-        st.plotly_chart(prfig)
+        st.plotly_chart(prfig,
+                        use_container_width=True,
+                        )
 
 #si la opciones es para hacer comparaciones entre equipos
 else:
@@ -185,5 +187,7 @@ else:
             )
             figeq.update_xaxes(title_text="Temporada")
 
-            st.plotly_chart(figeq, use_container_width=True)
+            st.plotly_chart(figeq, 
+                            use_container_width=True,
+                            )
 

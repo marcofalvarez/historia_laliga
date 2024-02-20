@@ -150,7 +150,8 @@ if make_table:
     fig_scatter.update_layout(xaxis=dict(range=[x_center-2, x_center+2]), yaxis=dict(range=[y_center-2, y_center+2]))
 
     # Mostrar el gráfico ajustado al ancho de la página
-    st.plotly_chart(fig_scatter)
+    st.plotly_chart(fig_scatter,
+                    use_container_width=True)
 
     # Cargar los datos de los estadios
     estadios_df = pd.read_csv("data/equipos_con_urls.csv")
