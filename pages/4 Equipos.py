@@ -132,8 +132,8 @@ if make_table:
     # Añadir anotación
     fig_scatter.add_annotation(x=50, y=50, text="Línea de equilibrio", showarrow=False, font=dict(color="red"))
 
-    fig_scatter.update_traces(marker=dict(size=equipos['Goles_a_favor'], color='skyblue', opacity=0.8),
-                             textfont=dict(color="white"),  # Cambiar el color del texto
+    fig_scatter.update_traces(marker=dict(size=equipos['Goles_a_favor'], color='#ffcbcb', opacity=0.8),
+                             textfont=dict(color="#132743"),  # Cambiar el color del texto
                              textposition='top center')  # Colocar el texto encima del marcador
     
     # Centrar el gráfico en los equipos mostrados
