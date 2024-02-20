@@ -58,7 +58,7 @@ with col1:
     with st.expander("Instrucciones"):
         st.markdown(
             '''
-                1- pasar el cursor sobre las gráfica (acción -hover) o hacer click en True/False para aprender más sobre
+                1- Pasar el cursor sobre las gráfica (acción -hover) o hacer click en True/False para aprender más sobre
                 los participantes y ganadores de La Liga.
         '''
         )
@@ -114,7 +114,7 @@ with col2:
     with st.expander("Instrucciones"):
         st.markdown(
         '''
-            1- el tamaño de las columans corresponde a la cantidad de veces que el equipo participó en
+            1- El tamaño de las columans corresponde a la cantidad de veces que el equipo participó en
             La Liga. Pasar el cursor sobre mapa (acción -hover) para aprender más sobre los equipos.
             Usa la rueda del ratón (acción -scroll), pinchar o click + movimiento del ratón para navegar
             en el mapa o hacer zoom.  

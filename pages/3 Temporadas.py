@@ -26,12 +26,12 @@ st.markdown(
 with st.expander("Instrucciones"):
                 st.markdown(
         '''           
-                1- escoger la temporada que te interese,  
-                2- escoger cuales posiciones quieres ver
+                1- Escoger la temporada que te interese,  
+                2- Escoger cuales posiciones quieres ver
                    (posición corresponde 1 al equipo ganador)  
-                3- ecoger el tipo de estádisticas  
-                4- hacer click en Vale!  
-                5- pasar el cursor sobre la gráfica (acción -hover)
+                3- Ecoger el tipo de estádisticas  
+                4- Hacer click en Vale!  
+                5- Pasar el cursor sobre la gráfica (acción -hover)
                    para obtener el detalle de las estádisticas
                    dentro de las gráficas  
                 

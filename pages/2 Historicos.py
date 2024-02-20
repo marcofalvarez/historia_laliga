@@ -9,7 +9,7 @@ from plotly.subplots import make_subplots
 import pages.modules.preparing_tables as tables
 
 #titulo y configuración de la pagina
-st.set_page_config(page_title= "Historicos",
+st.set_page_config(page_title= "Históricos",
                    page_icon= ":soccer:",
                    layout="centered")
 st.title("Estadísticas a lo largo de los años")
@@ -35,11 +35,11 @@ if tipo_datos == 'de ganadores de La Liga':
         st.markdown(
         '''       
                 1- Escoger una o más estadisticas que te interesen,  
-                2- hacer click en Vale!  
-                3- pasar el cursor sobre la gráfica (acción -hover)
+                2- Hacer click en Vale!  
+                3- Pasar el cursor sobre la gráfica (acción -hover)
                    para saber más sobre el equipo ganador de cada
                    temporada de La Liga  
-                4- puedes cambiar la resolución temporal mediante
+                4- Puedes cambiar la resolución temporal mediante
                    el menú a la cabeza de la gráfica o directamente
                    en el control deslizante abajo de la gráfica.
                    Desliza con tu mouse cuando el cursor muestre la
@@ -116,10 +116,10 @@ else:
         '''       
                 1- Escoger uno o más equipos que quieras comparar,  
                 2- Escoger una o más estadisticas que te interesen,  
-                3- hacer click en Vale!  
-                3- pasar el cursor sobre la gráfica (acción -hover)
+                3- Hacer click en Vale!  
+                3- Pasar el cursor sobre la gráfica (acción -hover)
                    para saber ver el detalle de la estadística. 
-                4- puedes cambiar la resolución temporal mediante
+                4- Puedes cambiar la resolución temporal mediante
                    el menú a la cabeza de la gráfica o directamente
                    en el control deslizante abajo de la gráfica.
                    Desliza con tu mouse cuando el cursor muestre la
