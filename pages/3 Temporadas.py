@@ -46,10 +46,43 @@ selec_pos = form1.slider(label='escoger una o más posiciones en la tabla', min_
 selec_stat = form1.radio('escojer el tipo de estadística',('total', 'en casa', 'de visitante'))
 if selec_stat == 'total':
     stat = ['Equipo','Posicion','PT', 'PJ', 'PG', 'PE', 'PP', 'GF','GC']
+    leyenda = st.markdown(
+        '''
+            'PT':'Puntos Totales',  
+            'PJ':'Partidos Jugados',  
+            'PG':'Partidos Ganados',  
+            'PE':'Partidos Empatados',  
+            'PP':'Partidos Perdidos',  
+            'GF':'Goles a Favor',  
+            'GC':'Goles en Contra',  
+        '''
+    )
 elif selec_stat == 'en casa':
     stat = ['Equipo','Posicion','PT_C', 'PJ_C', 'PG_C', 'PE_C', 'PP_C', 'GF_C', 'GC_C']
+    leyenda = st.markdown(
+        '''
+            'PT_C':'Puntos Totales (en casa)',  
+            'PJ_C':'Partidos Jugados (en casa)',  
+            'PG_C':'Partidos Ganados (en casa)',  
+            'PE_C':'Partidos Empatados (en casa)',  
+            'PP_C':'Partidos Perdidos (en casa)',  
+            'GF_C':'Goles a Favor (en casa)',  
+            'GC_C':'Goles en Contra (en casa)',    
+        '''
+    )
 elif selec_stat == 'de visitante':
     stat = ['Equipo','Posicion','PT_F', 'PJ_F', 'PG_F', 'PE_F', 'PP_F', 'GF_F', 'GC_F']
+    leyenda = st.markdown(
+        '''
+            'PT_F':'Puntos Totales (fuera de casa)',  
+            'PJ_F':'Partidos Jugados (fuera de casa)',  
+            'PG_F':'Partidos Ganados (fuera de casa)',  
+            'PE_F':'Partidos Empatados (fuera de casa)',  
+            'PP_F':'Partidos Perdidos (fuera de casa)',  
+            'GF_F':'Goles a Favor (fuera de casa)',  
+            'GC_F':'Goles en Contra (fuera de casa)'      
+        '''
+    )
 make_table = form1.form_submit_button('vale!')
 
 if make_table:
@@ -61,32 +94,7 @@ if make_table:
     st.dataframe(data=df[(df['Temporada'] == selec_temp) & (df['Posicion'].between(left=selec_pos[0], right=selec_pos[1], inclusive='both'))][stat])
            #columns_auto_size_mode=ColumnsAutoSizeMode.FIT_CONTENTS)
     
-    st.markdown(
-        '''
-            'PT':'Puntos Totales',  
-            'PJ':'Partidos Jugados',  
-            'PG':'Partidos Ganados',  
-            'PE':'Partidos Empatados',  
-            'PP':'Partidos Perdidos',  
-            'GF':'Goles a Favor',  
-            'GC':'Goles en Contra',  
-            'PT_C':'Puntos Totales (en casa)',  
-            'PJ_C':'Partidos Jugados (en casa)',  
-            'PG_C':'Partidos Ganados (en casa)',  
-            'PE_C':'Partidos Empatados (en casa)',  
-            'PP_C':'Partidos Perdidos (en casa)',  
-            'GF_C':'Goles a Favor (en casa)',  
-            'GC_C':'Goles en Contra (en casa)',  
-            'PT_F':'Puntos Totales (fuera de casa)',  
-            'PJ_F':'Partidos Jugados (fuera de casa)',  
-            'PG_F':'Partidos Ganados (fuera de casa)',  
-            'PE_F':'Partidos Empatados (fuera de casa)',  
-            'PP_F':'Partidos Perdidos (fuera de casa)',  
-            'GF_F':'Goles a Favor (fuera de casa)',  
-            'GC_F':'Goles en Contra (fuera de casa)'   
-
-        '''
-    )
+    leyenda
 
     df_stat = df[(df['Temporada'] == selec_temp) & (df['Posicion'].between(left=selec_pos[0], right=selec_pos[1], inclusive='both'))][stat].reset_index()
     partidos = df_stat.columns[5:8]
