@@ -16,6 +16,11 @@ st.title("Estadísticas a lo largo de los años")
 
 #opciones al lado de la pagina para 2 tipos de visualizaciones
 form2 = st.sidebar.form(key='opciones_historicos')
+
+tipo_datos = form2.radio('Escoge los datos que quieres ver', 
+                         ['de ganadores de La Liga', 'por equipo'],
+                         captions=["resumen general para el equipo ganadar para cada temporada", "comparación entre equipos"])
+hist_graphs = form2.form_submit_button('vale!')
 css="""
 <style>
     [data-testid="form2"] {
@@ -24,11 +29,6 @@ css="""
 </style>
 """
 st.write(css, unsafe_allow_html=True)
-tipo_datos = form2.radio('Escoge los datos que quieres ver', 
-                         ['de ganadores de La Liga', 'por equipo'],
-                         captions=["resumen general para el equipo ganadar para cada temporada", "comparación entre equipos"])
-hist_graphs = form2.form_submit_button('vale!')
-
 
 #si selecciona las estadísticas históricas para el equipo ganador de la copa
 if tipo_datos == 'de ganadores de La Liga':
