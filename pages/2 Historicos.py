@@ -21,9 +21,11 @@ tipo_datos = form2.radio('Escoge los datos que quieres ver',
                          ['de ganadores de La Liga', 'por equipo'],
                          captions=["resumen general para el equipo ganadar para cada temporada", "comparación entre equipos"])
 hist_graphs = form2.form_submit_button('vale!')
+
+
 css="""
 <style>
-    [data-testid="form2"] {
+    [data-testid="stForm"] {
         background: LightBlue;
     }
 </style>
