@@ -30,6 +30,14 @@ st.markdown(
 '''
     )
 
+css="""
+<style>
+    [data-testid="stForm"] {
+        background: LightBlue;
+    }
+</style>
+"""
+st.write(css, unsafe_allow_html=True)
 #hacer dos graficos
 col1, col2 = st.columns(2)
 

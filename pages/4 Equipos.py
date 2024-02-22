@@ -34,6 +34,15 @@ elif selec_stat == 'VISITANTE':
     stat = ['Equipo','Total_partidos_jugados_fuera', 'Partidos_ganados_fuera', 'Partidos_perdidos_fuera', 'Partidos_empatados_fuera', 'Porcentaje_victorias_fuera', 'Porcentaje_derrotas_fuera', 'Porcentaje_empates_fuera']
 make_table = form1.form_submit_button('VALE!')
 
+css="""
+<style>
+    [data-testid="stForm"] {
+        background: LightBlue;
+    }
+</style>
+"""
+st.write(css, unsafe_allow_html=True)
+
 if make_table:
     
     st.header("EQUIPO: ")

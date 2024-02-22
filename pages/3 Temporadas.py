@@ -95,6 +95,14 @@ elif selec_stat == 'de visitante':
         )
 make_table = form1.form_submit_button('vale!')
 
+css="""
+<style>
+    [data-testid="stForm"] {
+        background: LightBlue;
+    }
+</style>
+"""
+st.write(css, unsafe_allow_html=True)
 if make_table:
     
     st.header("Temporada: ")
