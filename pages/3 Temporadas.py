@@ -51,6 +51,16 @@ stat = []
 selec_temp = form1.selectbox('escoger una temporada', temps, )
 selec_pos = form1.slider(label='escoger una o más posiciones en la tabla', min_value= min(pos), max_value= max(pos),value=(1,3))
 selec_stat = form1.radio('escojer el tipo de estadística',('total', 'en casa', 'de visitante'))
+
+css="""
+<style>
+    [data-testid="stForm"] {
+        background: LightBlue;
+    }
+</style>
+"""
+st.write(css, unsafe_allow_html=True)
+
 if selec_stat == 'total':
     stat = ['Equipo','Posicion','PT', 'PJ', 'PG', 'PE', 'PP', 'GF','GC']
     with st.expander("Leyenda"):
@@ -95,14 +105,6 @@ elif selec_stat == 'de visitante':
         )
 make_table = form1.form_submit_button('vale!')
 
-css="""
-<style>
-    [data-testid="stForm"] {
-        background: LightBlue;
-    }
-</style>
-"""
-st.write(css, unsafe_allow_html=True)
 if make_table:
     
     st.header("Temporada: ")

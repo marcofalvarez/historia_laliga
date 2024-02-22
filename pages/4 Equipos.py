@@ -26,14 +26,6 @@ team = df['Equipo'].unique()
 stat = []
 selec_team = form1.selectbox('ESCOGE UN EQUIPO', team) #, format_func=lambda x: f"{x}")
 selec_stat = form1.radio('ESCOJA EL TIPO DE ESTADÍSTICA',('TOTAL', 'LOCAL', 'VISITANTE'))
-if selec_stat == 'TOTAL':
-    stat = ['Equipo','Partidos_jugados','Partidos_ganados', 'Partidos_perdidos', 'Partidos_empatados', 'Goles_a_favor', 'Goles_en_contra', 'Porcentaje_victorias', 'Porcentaje_derrotas', 'Porcentaje_empates', 'Media_goles_a_favor', 'Media_goles_en_contra']
-elif selec_stat == 'LOCAL':
-    stat = ['Equipo','Total_partidos_jugados_casa', 'Partidos_ganados_casa', 'Partidos_perdidos_casa', 'Partidos_empatados_casa', 'Porcentaje_victorias_casa', 'Porcentaje_derrotas_casa', 'Porcentaje_empates_casa']
-elif selec_stat == 'VISITANTE':
-    stat = ['Equipo','Total_partidos_jugados_fuera', 'Partidos_ganados_fuera', 'Partidos_perdidos_fuera', 'Partidos_empatados_fuera', 'Porcentaje_victorias_fuera', 'Porcentaje_derrotas_fuera', 'Porcentaje_empates_fuera']
-make_table = form1.form_submit_button('VALE!')
-
 css="""
 <style>
     [data-testid="stForm"] {
@@ -42,6 +34,15 @@ css="""
 </style>
 """
 st.write(css, unsafe_allow_html=True)
+
+
+if selec_stat == 'TOTAL':
+    stat = ['Equipo','Partidos_jugados','Partidos_ganados', 'Partidos_perdidos', 'Partidos_empatados', 'Goles_a_favor', 'Goles_en_contra', 'Porcentaje_victorias', 'Porcentaje_derrotas', 'Porcentaje_empates', 'Media_goles_a_favor', 'Media_goles_en_contra']
+elif selec_stat == 'LOCAL':
+    stat = ['Equipo','Total_partidos_jugados_casa', 'Partidos_ganados_casa', 'Partidos_perdidos_casa', 'Partidos_empatados_casa', 'Porcentaje_victorias_casa', 'Porcentaje_derrotas_casa', 'Porcentaje_empates_casa']
+elif selec_stat == 'VISITANTE':
+    stat = ['Equipo','Total_partidos_jugados_fuera', 'Partidos_ganados_fuera', 'Partidos_perdidos_fuera', 'Partidos_empatados_fuera', 'Porcentaje_victorias_fuera', 'Porcentaje_derrotas_fuera', 'Porcentaje_empates_fuera']
+make_table = form1.form_submit_button('VALE!')
 
 if make_table:
     
