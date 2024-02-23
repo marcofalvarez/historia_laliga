@@ -17,7 +17,8 @@ st.markdown(
     '''
 )
 st.divider()  
-st.markdown(         
+st.markdown(
+    '''    
          ### Hemos dividido la información en 4 páginas:
             1.Resumen:     
                         contiene información general de los equipos con  
