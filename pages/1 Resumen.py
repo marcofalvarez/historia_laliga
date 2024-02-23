@@ -10,6 +10,7 @@ from plotly.subplots import make_subplots
 import pydeck as pdk
 
 import pages.modules.preparing_tables as tables
+import pages.modules.ml_clusters as ml
 
 st.set_page_config(page_title= "Resumen",
                    page_icon= ":soccer:",
@@ -167,3 +168,167 @@ fig.layout.updatemenus[0].buttons[0].args[1]['transition']['duration'] = 5
 st.plotly_chart(fig,
                 use_container_width=True,
                 )
+
+df =ml.group_temporadas("data/clasificacion.csv")
+data = ml.scaling_data(df=df)
+inercias = ml.inertias(data)
+
+
+ifig = px.line(x=range(1, len(inercias)+1), y=inercias, hover_name=inercias, markers=True)
+ifig.update_layout(title='Cambios de Inercia en relación a K',
+                   xaxis_title='Ks',
+                   yaxis_title='Inercia')
+st.plotly_chart(ifig, use_container_width=True)
+
+df = ml.making_clusters(data, df)
+
+# valor_k = st.slider('Escoger un valor de K', 2, 4)
+with st.form('K choice'):
+    valor_k = st.radio(
+    "Escoger un valor de K",
+    ["2", "3", "4"],
+    # captions = ["", "", ""],
+    )
+    presionar = st.form_submit_button("Vale!")
+    if presionar:
+        if valor_k == "2":
+
+            # Create figure with secondary y-axis
+            fig = make_subplots(specs=[[{"secondary_y": True}]])
+
+            # Add traces
+            fig.add_trace(
+                go.Scatter(x=df['Temp'], 
+                    y=df['PT'], name="PT"),
+                secondary_y=False,
+            )
+            fig.add_trace(
+                go.Scatter(x=df['Temp'], 
+                    y=df['PJ'], name="PJ"),
+                secondary_y=False,
+            )
+
+            fig.add_trace(
+                go.Scatter(x=df['Temp'], 
+                    y=df['PG'], name="PG"),
+                secondary_y=False,
+            )
+
+            fig.add_trace(
+                go.Scatter(x=df['Temp'], 
+                    y=df['PP'], name="PT"),
+                secondary_y=False,
+            )
+            fig.add_trace(
+                go.Scatter(x=df['Temp'], 
+                        y=df['cluster2'], name = 'clusters'),
+                secondary_y=True,
+            )
+
+            # Add figure title
+            fig.update_layout(
+                title_text="clustering"
+            )
+
+            # Set x-axis title
+            fig.update_xaxes(title_text="temp")
+
+            # Set y-axes titles
+            fig.update_yaxes(title_text="<b>Resultados</b> estadisticas", secondary_y=False)
+            fig.update_yaxes(title_text="<b>Cluster</b> agrupaciones", secondary_y=True)
+            st.plotly_chart(fig)
+
+        if valor_k == "3":
+
+            # Create figure with secondary y-axis
+            fig = make_subplots(specs=[[{"secondary_y": True}]])
+
+            # Add traces
+            fig.add_trace(
+                go.Scatter(x=df['Temp'], 
+                    y=df['PT'], name="PT"),
+                secondary_y=False,
+            )
+            fig.add_trace(
+                go.Scatter(x=df['Temp'], 
+                    y=df['PJ'], name="PJ"),
+                secondary_y=False,
+            )
+
+            fig.add_trace(
+                go.Scatter(x=df['Temp'], 
+                    y=df['PG'], name="PG"),
+                secondary_y=False,
+            )
+
+            fig.add_trace(
+                go.Scatter(x=df['Temp'], 
+                    y=df['PP'], name="PT"),
+                secondary_y=False,
+            )
+            fig.add_trace(
+                go.Scatter(x=df['Temp'], 
+                        y=df['cluster3'], name = 'clusters'),
+                secondary_y=True,
+            )
+
+            # Add figure title
+            fig.update_layout(
+                title_text="clustering"
+            )
+
+            # Set x-axis title
+            fig.update_xaxes(title_text="temp")
+
+            # Set y-axes titles
+            fig.update_yaxes(title_text="<b>Resultados</b> estadisticas", secondary_y=False)
+            fig.update_yaxes(title_text="<b>Cluster</b> agrupaciones", secondary_y=True)
+            st.plotly_chart(fig)
+
+        if valor_k == "4":
+
+            # Create figure with secondary y-axis
+            fig = make_subplots(specs=[[{"secondary_y": True}]])
+
+            # Add traces
+            fig.add_trace(
+                go.Scatter(x=df['Temp'], 
+                    y=df['PT'], name="PT"),
+                secondary_y=False,
+            )
+            fig.add_trace(
+                go.Scatter(x=df['Temp'], 
+                    y=df['PJ'], name="PJ"),
+                secondary_y=False,
+            )
+
+            fig.add_trace(
+                go.Scatter(x=df['Temp'], 
+                    y=df['PG'], name="PG"),
+                secondary_y=False,
+            )
+
+            fig.add_trace(
+                go.Scatter(x=df['Temp'], 
+                    y=df['PP'], name="PT"),
+                secondary_y=False,
+            )
+            fig.add_trace(
+                go.Scatter(x=df['Temp'], 
+                        y=df['cluster4'], name = 'clusters'),
+                secondary_y=True,
+            )
+
+            # Add figure title
+            fig.update_layout(
+                title_text="clustering"
+            )
+
+            # Set x-axis title
+            fig.update_xaxes(title_text="temp")
+
+            # Set y-axes titles
+            fig.update_yaxes(title_text="<b>Resultados</b> estadisticas", secondary_y=False)
+            fig.update_yaxes(title_text="<b>Cluster</b> agrupaciones", secondary_y=True)
+            st.plotly_chart(fig, use_container_width=True)
+
