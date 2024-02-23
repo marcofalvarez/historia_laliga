@@ -193,7 +193,7 @@ if make_table:
     else:
         st.warning("No se encontró información del estadio para el equipo seleccionado.")
 
-# Cargar los datos de clasificacion
+ # Cargar los datos de clasificacion
     clasificacion = pd.read_csv("data/clasificacion.csv")
 
     # Filtrar los datos para el equipo seleccionado desde la temporada 1987-88
