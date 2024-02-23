@@ -11,8 +11,7 @@ import pydeck as pdk
 
 import pages.modules.preparing_tables as tables
 import pages.modules.ml_clusters as ml
-from sklearn.preprocessing import StandardScaler, MinMaxScaler
-from sklearn.cluster import KMeans
+
 st.set_page_config(page_title= "Resumen",
                    page_icon= ":soccer:",
                    layout="wide")
