@@ -113,7 +113,7 @@ if make_table:
     st.subheader(selec_temp) 
     #st.write(selec_pos[0], selec_pos[1])
     
-    st.dataframe(data=df[(df['Temporada'] == selec_temp) & (df['Posicion'].between(left=selec_pos[0], right=selec_pos[1], inclusive='both'))][stat])
+    st.dataframe(data=df[(df['Temporada'] == selec_temp) & (df['Posicion'].between(left=selec_pos[0], right=selec_pos[1], inclusive='both'))][stat], hide_index=True)
            #columns_auto_size_mode=ColumnsAutoSizeMode.FIT_CONTENTS)
     
     st.markdown(leyenda)
