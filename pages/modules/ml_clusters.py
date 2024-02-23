@@ -1,3 +1,4 @@
+import streamlit as st 
 import random
 import numpy as np
 import pandas as pd
@@ -7,6 +8,7 @@ import sklearn
 from sklearn.preprocessing import StandardScaler, MinMaxScaler
 from sklearn.cluster import KMeans
 
+@st.cache_data
 def group_temporadas(_csv_file):
     df= pd.read_csv(_csv_file)
     df = df[(df['Posicion'].between(1,10)) & (df['Temporada'] < "2023-24")].groupby(['Temporada']).mean(numeric_only=True).reset_index()
@@ -22,6 +24,7 @@ def scaling_data(df):
     data = x_scaler.fit_transform(df.iloc[:,3:])
     return data
 
+@st.cache_data
 def making_clusters(data, df):
 
     def run_model(data, n):
@@ -41,6 +44,7 @@ def making_clusters(data, df):
     df['cluster4'] = cluster4
     return df
 
+@st.cache_data
 def inertias(data):
     
     inercias = list() 

@@ -13,6 +13,8 @@ st.set_page_config(page_title= "Temporadas",
                    layout="wide")
 
 st.title("Resultados al final de temporada")
+st.divider()
+
 #Use the menu on the right to customize the table that you want to display. 
 #Once the you are happy with your selection select Vale!. 
 st.markdown(
@@ -115,7 +117,8 @@ if make_table:
            #columns_auto_size_mode=ColumnsAutoSizeMode.FIT_CONTENTS)
     
     st.markdown(leyenda)
-
+    st.divider()
+    
     df_stat = df[(df['Temporada'] == selec_temp) & (df['Posicion'].between(left=selec_pos[0], right=selec_pos[1], inclusive='both'))][stat].reset_index()
     partidos = df_stat.columns[5:8]
     puntos = df_stat.columns[3]
@@ -128,6 +131,7 @@ if make_table:
                 y=df_stat[puntos], 
                 name = 'Points')
     st.plotly_chart(fig)
+    st.divider()
 
     
     equipo = df_stat.columns[1]
@@ -151,5 +155,6 @@ if make_table:
     st.plotly_chart(gfig,
                     use_container_width=True,
                     )
+    st.divider()
 
 

@@ -13,7 +13,7 @@ st.set_page_config(page_title= "Históricos",
                    page_icon= ":soccer:",
                    layout="wide")
 st.title("Estadísticas a lo largo de los años")
-
+st.divider()
 #opciones al lado de la pagina para 2 tipos de visualizaciones
 form2 = st.sidebar.form(key='opciones_historicos')
 
@@ -200,4 +200,5 @@ else:
             st.plotly_chart(figeq, 
                             use_container_width=True,
                             )
+            st.divider()
 

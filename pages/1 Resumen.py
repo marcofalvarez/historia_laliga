@@ -16,7 +16,7 @@ st.set_page_config(page_title= "Resumen",
                    page_icon= ":soccer:",
                    layout="wide")
 st.title("Resumen de la Historia de La Liga")
-
+st.divider()
 st.markdown(
         '''
             ## Cuales son los actores más importantes y cuales son los trazos más importantes que han marcado la historia de La Liga ?
@@ -30,7 +30,7 @@ st.markdown(
                 
 '''
     )
-
+st.divider()
 css="""
 <style>
     [data-testid="stForm"] {
@@ -135,7 +135,7 @@ with col2:
             '''
         )       
 
-
+st.divider()
 
 dd = tables.cumsum_table("data/clasificacion.csv")
 eq = dd['Equipo'].unique().tolist()
@@ -168,6 +168,8 @@ fig.layout.updatemenus[0].buttons[0].args[1]['transition']['duration'] = 5
 st.plotly_chart(fig,
                 use_container_width=True,
                 )
+
+st.divider()
 
 df =ml.group_temporadas("data/clasificacion.csv")
 data = ml.scaling_data(df=df)

@@ -8,12 +8,16 @@ st.set_page_config(page_title= "La Liga",
                 )
 # st.sidebar.header('Menú')
 st.title('Historia de La Liga Española')
+st.divider()
 st.markdown(
     '''
         Esta aplicación está diseñada para obtener el máximo de información sobre  
         los resultados históricos de La Liga. En el menú de la izquierda podrás   
-        aprender al interactuar con representaciones visuales de los datos desde 1928.    
-         
+        aprender al interactuar con representaciones visuales de los datos desde 1928.  
+    '''
+)
+st.divider()  
+st.markdown(         
          ### Hemos dividido la información en 4 páginas:
             1.Resumen:     
                         contiene información general de los equipos con  
