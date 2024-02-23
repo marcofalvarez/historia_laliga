@@ -27,19 +27,19 @@ st.markdown(
                         número de trofeos de La Liga y cuándo los 
                         obtuvieron.  
             2.Hisóricos:   
-                        con estádisticas historicas para los equipos que
-                        quieras ver. Podrás hacer comparaciones de equipos 
-                        a través de los años y enfocarte en los periodos 
-                        de tiempo y los datos que más te interesen.
-            3.Temporadas:
-                        esta página esta diseñada para date un resumen de
-                        lo que ha pasado cada temporada en la liga. 
-                        Podrás escoger el año que te interese y descubrir
-                        los detalles más interesantes.
-            4.Equipos
-                        y para conocer más sobre tu equipo favorito o 
-                        aprender un poco sobre el equipo rival podrás 
-                        visitar esta página. 
+                        con estádisticas historicas para los equipos que  
+                        quieras ver. Podrás hacer comparaciones de equipos  
+                        a través de los años y enfocarte en los periodos  
+                        de tiempo y los datos que más te interesen.   
+            3.Temporadas:   
+                        esta página esta diseñada para date un resumen de  
+                        lo que ha pasado cada temporada en la liga.  
+                        Podrás escoger el año que te interese y descubrir  
+                        los detalles más interesantes.   
+            4.Equipos:   
+                        y para conocer más sobre tu equipo favorito o  
+                        aprender un poco sobre el equipo rival podrás  
+                        visitar esta página.   
      '''                       
     
 )
