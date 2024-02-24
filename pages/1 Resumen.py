@@ -19,7 +19,7 @@ st.set_page_config(page_title= "Resumen",
 st.markdown("""     
             <style>         
                      
-            .st-emotion-cache-17lntkn {             
+            .st-emotion-cache-pkbazv {             
             color: rgb(255, 255, 255); 
                      
             }     

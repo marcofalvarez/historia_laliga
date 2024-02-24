@@ -16,7 +16,7 @@ st.title("Estadísticas de equipos")
 st.markdown("""     
             <style>         
                      
-            .st-emotion-cache-17lntkn {             
+            .st-emotion-cache-pkbazv {             
             color: rgb(255, 255, 255); 
                      
             }     
