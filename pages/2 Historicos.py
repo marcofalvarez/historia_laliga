@@ -12,6 +12,18 @@ import pages.modules.preparing_tables as tables
 st.set_page_config(page_title= "Históricos",
                    page_icon= ":soccer:",
                    layout="wide")
+
+st.markdown("""     
+            <style>         
+                     
+            .st-emotion-cache-17lntkn {             
+            color: rgb(255, 255, 255); 
+                     
+            }     
+            </style> """, 
+            unsafe_allow_html=True,
+            )
+
 st.title("Estadísticas a lo largo de los años")
 st.divider()
 #opciones al lado de la pagina para 2 tipos de visualizaciones

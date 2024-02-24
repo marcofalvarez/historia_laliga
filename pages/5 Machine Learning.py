@@ -27,6 +27,18 @@ st.set_page_config(page_title= "Machine Learning",
                    page_icon= ":soccer:",
                    layout="wide"
                 )
+
+st.markdown("""     
+            <style>         
+                     
+            .st-emotion-cache-17lntkn {             
+            color: rgb(255, 255, 255); 
+                     
+            }     
+            </style> """, 
+            unsafe_allow_html=True,
+            )
+
 # st.sidebar.header('Menú')
 st.title('Verificación de hipótesis')
 st.divider()

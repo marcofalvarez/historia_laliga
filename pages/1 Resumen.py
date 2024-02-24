@@ -15,6 +15,18 @@ import pages.modules.ml_clusters as ml
 st.set_page_config(page_title= "Resumen",
                    page_icon= ":soccer:",
                    layout="wide")
+
+st.markdown("""     
+            <style>         
+                     
+            .st-emotion-cache-17lntkn {             
+            color: rgb(255, 255, 255); 
+                     
+            }     
+            </style> """, 
+            unsafe_allow_html=True,
+            )
+
 st.title("Resumen de la Historia de La Liga")
 st.divider()
 st.markdown(
