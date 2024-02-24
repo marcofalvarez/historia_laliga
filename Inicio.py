@@ -53,8 +53,8 @@ st.write(css, unsafe_allow_html=True)
 st.markdown("""     
             <style>         
                      
-            [data-testid='stSidebarNavlink] {             
-            textcolor: white; 
+            [class='st-emotion-cache-k4gfp0 eczjsme5] {             
+            color: white; 
                      
             }     
             </style> """, 
