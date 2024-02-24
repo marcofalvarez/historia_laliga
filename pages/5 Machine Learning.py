@@ -45,19 +45,45 @@ st.markdown(
         usamos un método de aglomeración jérarquico para identificar los equipos más exitosos y más dominantes.   
     '''
 )
+st.divider()
 
+st.markdown(
+    '''Para estudiar los cambios temporales tomamos los primeros 10 equipos de cada temporada y calculamos la media
+     para todos los datos. 
+    Buscamos primero el número óptimo de grupos en nuestro modelo Kmeans para dividir nuestros datos en el tiempo.
+     Esto lo hacemos usando el "método del codo". Este método consiste en estudiar mediante un gráfico la variación 
+     explicada en función de diferente número de grupos(K). A la variación explicada le llamamos inercia. 
+     El siguiente gráfico muestra las inercias para diferente número de clusters (K).
+        '''
+)
+st.divider()
 df =ml.group_temporadas("data/clasificacion.csv")
 data = ml.scaling_data(df=df)
 inercias = ml.inertias(data)
 
-
 ifig = px.line(x=range(1, len(inercias)+1), y=inercias, hover_name=inercias, markers=True)
-ifig.update_layout(title='Cambios de Inercia en relación a K',
+ifig.update_layout(title='Inercia en relación a K',
                    xaxis_title='Ks',
                    yaxis_title='Inercia')
 st.plotly_chart(ifig, use_container_width=True)
+with st.expander("explicación"):
+        st.markdown(
+        '''Se denomina a este tipo de gráfico "elbow method" o método del codo. Se utiliza para determinar 
+        el cambio en variación en fución del número de agrupaciones. En este caso el 'codo' esta entre 2 y 4.
+            
+            '''
+        )       
+
 
 df = ml.making_clusters(data, df)
+
+css="""
+<style>
+    [data-testid="stForm"] {
+        background: LightBlue;
+    }
+</style>
+"""
 
 # valor_k = st.slider('Escoger un valor de K', 2, 4)
 with st.form('K choice'):
@@ -209,3 +235,12 @@ with st.form('K choice'):
             fig.update_yaxes(title_text="<b>Cluster</b> agrupaciones", secondary_y=True)
             st.plotly_chart(fig, use_container_width=True)
 
+with st.expander("explicación"):
+        st.markdown(
+        '''Podemos ver que las agrupaciones temporales siguen algunas de nuestras observaciones 
+        y estudios bibliográficos sobre los cambios en el número de equipos en la liga así como 
+        cambios en el número de puntos. La próxima pregunta a resolver será para aprender más 
+        sobre diferencias entre el tipo de juego a través del tiempo. Para este tipo de estudios 
+         es necesario recopilar más datos por partido y por jugador.  
+            '''
+        )
