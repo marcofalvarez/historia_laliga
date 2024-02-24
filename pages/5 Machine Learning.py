@@ -38,9 +38,9 @@ st.markdown(
         Al mismo tiempo nos preguntamos cómo se comparan los equipos entre si, cúales han obtenido un rendimiento  
         sobresaliente y han dominado en períodos de tiempo considerable.
 
-        Para responder a estas preguntas usamos algorítmos de Machine Learning. Los métodos que más se adaptan a  
-        este tipo de preguntas son los modelos no supervisados. Para aprender sobre cambios en el tiempo usamos  
-        Kmeans, hemos observado una posible tendencia en los últimos 40 años, cambios en las leyes de puntos y el  
+        Para responder a estas preguntas usamos algorítmos de Machine Learning. Los métodos que más se adaptan a 
+        este tipo de preguntas son los modelos no supervisados. Para aprender sobre cambios en el tiempo usamos 
+        Kmeans, hemos observado una posible tendencia en los últimos 40 años, cambios en las leyes de puntos y el 
         número de quipos podría influeciar esto. Por otro lado, para estudiar la diferencia entre los equipos 
         usamos un método de aglomeración jérarquico para identificar los equipos más exitosos y más dominantes.   
     '''
