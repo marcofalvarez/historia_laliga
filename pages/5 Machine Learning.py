@@ -291,7 +291,17 @@ agglom.fit(X)
 df['agglom'] = agglom.labels_
 df['agglom']= df["agglom"].astype('string')
 dc = df.sort_values(by=['agglom'])
-scfig = px.scatter(dc, x = dc.PG, y = dc.PP,  size=dc.PT, color = dc.agglom, hover_data=['Equipo'],)
+scfig = px.scatter(dc, x = dc.PG, y = dc.PP,  
+                   size=dc.PT, 
+                   color = dc.agglom, 
+                   hover_data=['Equipo'],
+                   color_discrete_map={
+                        "0": '#1f77b4',
+                        "1": '#d62728',
+                        "2": '#17becf',
+                        "3": '#2ca02c',
+                   }
+                   )
 scfig.update_layout(
     title="Summary",
     xaxis_title="Partidos Ganados",
