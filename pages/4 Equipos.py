@@ -59,7 +59,7 @@ if make_table:
     
     st.header("EQUIPO: ")
     st.subheader(selec_team) 
-    st.dataframe(data=df.loc[df['Equipo'] == selec_team, stat])
+    st.dataframe(data=df.loc[df['Equipo'] == selec_team, stat],hide_index=True)
 
     # Cargar los datos de los escudos
     escudos_path = "data/ESCUDOS"
@@ -352,7 +352,7 @@ if make_table:
     # Récord de clasificación
     if len(records_mejor_clasificacion) > 1:
         st.write("Récord de clasificación:")
-        st.dataframe(records_mejor_clasificacion[['Posicion', 'Temporada', 'PT']])
+        st.dataframe(records_mejor_clasificacion[['Posicion', 'Temporada', 'PT']], hide_index=True)
     else:
         año_mejor_clasificacion = records_mejor_clasificacion.iloc[0]['Temporada']
         puntos_año_mejor_clasificacion = records_mejor_clasificacion.iloc[0]['PT']
