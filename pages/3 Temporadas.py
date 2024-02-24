@@ -65,8 +65,8 @@ st.write(css, unsafe_allow_html=True)
 
 if selec_stat == 'total':
     stat = ['Equipo','Posicion','PT', 'PJ', 'PG', 'PE', 'PP', 'GF','GC']
-    with st.expander("Leyenda"):
-          leyenda = (
+    # expander = st.expander("Leyenda")
+    leyenda = st.markdown(
             '''
             'PT':'Puntos Totales',  
             'PJ':'Partidos Jugados',  
@@ -79,8 +79,8 @@ if selec_stat == 'total':
         )
 elif selec_stat == 'en casa':
     stat = ['Equipo','Posicion','PT_C', 'PJ_C', 'PG_C', 'PE_C', 'PP_C', 'GF_C', 'GC_C']
-    with st.expander("Leyenda"):
-          leyenda = (
+    # expander = st.expander("Leyenda")
+    leyenda = st.markdown(
             '''
             'PT_C':'Puntos Totales (en casa)',  
             'PJ_C':'Partidos Jugados (en casa)',  
@@ -93,8 +93,8 @@ elif selec_stat == 'en casa':
         )
 elif selec_stat == 'de visitante':
     stat = ['Equipo','Posicion','PT_F', 'PJ_F', 'PG_F', 'PE_F', 'PP_F', 'GF_F', 'GC_F']
-    with st.expander("Leyenda"):
-          leyenda = (
+    # expander = st.expander("Leyenda")
+    leyenda = st.markdown(
             '''
             'PT_F':'Puntos Totales (fuera de casa)',  
             'PJ_F':'Partidos Jugados (fuera de casa)',  
@@ -112,11 +112,12 @@ if make_table:
     st.header("Temporada: ")
     st.subheader(selec_temp) 
     #st.write(selec_pos[0], selec_pos[1])
-    
-    st.dataframe(data=df[(df['Temporada'] == selec_temp) & (df['Posicion'].between(left=selec_pos[0], right=selec_pos[1], inclusive='both'))][stat], hide_index=True)
+    with st.expander('Leyenda'):
+        leyenda
+        st.dataframe(data=df[(df['Temporada'] == selec_temp) & (df['Posicion'].between(left=selec_pos[0], right=selec_pos[1], inclusive='both'))][stat], hide_index=True)
            #columns_auto_size_mode=ColumnsAutoSizeMode.FIT_CONTENTS)
     
-    st.markdown(leyenda)
+    # st.markdown(leyenda)
     st.divider()
     
     df_stat = df[(df['Temporada'] == selec_temp) & (df['Posicion'].between(left=selec_pos[0], right=selec_pos[1], inclusive='both'))][stat].reset_index()

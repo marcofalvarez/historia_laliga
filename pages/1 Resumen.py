@@ -46,10 +46,7 @@ df = tables.sunb_table('data/clasificacion.csv')
 #grafico de bara con equipos que han participado mas de 20 veces
 with col1:
     st.subheader(
-        '''Quién ha ganado La Liga
-              
-            
-'''
+        '''Quién ha ganado La Liga '''
     )
 
 with col1:
@@ -124,7 +121,7 @@ with col2:
                     use_container_width=True,
                     )
     
-    with st.expander("Instrucciones"):
+    with st.expander("explicación"):
         st.markdown(
         '''
             1- El tamaño de las columans corresponde a la cantidad de veces que el equipo participó en
