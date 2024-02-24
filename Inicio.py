@@ -6,7 +6,7 @@ st.set_page_config(page_title= "La Liga",
                    page_icon= ":soccer:",
                 #    layout="wide"
                 )
-st.sidebar.image('data/Logo.PNG')
+st.image('data/Logo.PNG')
 
 st.title('Historia de La Liga Española')
 st.divider()
