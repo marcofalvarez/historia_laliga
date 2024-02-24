@@ -53,8 +53,8 @@ st.write(css, unsafe_allow_html=True)
 st.markdown("""     
             <style>         
                      
-            [class='st-emotion-cache-k4gfp0 eczjsme5] {             
-            color: white; 
+            [class='st-emotion-cache-pkbazv] {             
+            color: rgb(255, 255, 255); 
                      
             }     
             </style> """, 
