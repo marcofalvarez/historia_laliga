@@ -57,7 +57,8 @@ st.markdown(
     '''
 )
 st.divider()
-
+st.subheader('Modelo Kmeans')
+st.divider()
 st.markdown(
     '''Para estudiar los cambios temporales tomamos los primeros 10 equipos de cada temporada y calculamos la media
      para todos los datos. 
