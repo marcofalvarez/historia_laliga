@@ -296,7 +296,7 @@ scfig = px.scatter(dc, x = dc.PG, y = dc.PP,
                    color = dc.agglom, 
                    hover_data=['Equipo'],
                    color_discrete_map={
-                        "0": '#1f77b4',
+                        "0": '#9467bd',
                         "1": '#d62728',
                         "2": '#17becf',
                         "3": '#2ca02c',
