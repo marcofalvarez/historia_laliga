@@ -54,7 +54,7 @@ st.markdown("""
             <style>         
                      
             [data-testid='stSidebarNavlink] {             
-            color: white; 
+            textcolor: white; 
                      
             }     
             </style> """, 
