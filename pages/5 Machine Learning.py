@@ -23,12 +23,12 @@ st.markdown(
     '''
         En nuestra busqueda bibliográfica hemos aprendido varias cosas:   
 
-        1. Hasta la temporada *1995/1996* la puntuación se realizaba de forma que el partido ganado era 2 puntos,   
+        1. Hasta la temporada *1995/1996* la puntuación se realizaba de forma que el partido ganado era 2 puntos,
         después hasta la actualidad vale 3 puntos.   
-        2. Hasta la temporada *1934/1935* hay 10 equipos, hasta la *1940/1941* hay 12 equipos, hasta la *1949/1950*  
-        son 16 los equipos, a partir de *1971/1972* son 18 los equipos que juegan y desde la temporada *1987/1988*  
+        2. Hasta la temporada *1934/1935* hay 10 equipos, hasta la *1940/1941* hay 12 equipos, hasta la *1949/1950*
+        son 16 los equipos, a partir de *1971/1972* son 18 los equipos que juegan y desde la temporada *1987/1988*
         son 20 los equipos que la forman, anotando que en la temporada *1995/1996* y *1996/1997* son 22.  
-        3. De la temporada de *1936/1937* a *1938/1939* no hay datos debido a que la Guerra Civil en España no  
+        3. De la temporada de *1936/1937* a *1938/1939* no hay datos debido a que la Guerra Civil en España no 
         permitió que se dispiturá la competición.   
 
         Estos hechos los hemos verificado mediante la exploración de datos. Hemos visto la fluctuación de puntos
