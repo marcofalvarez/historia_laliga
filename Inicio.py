@@ -53,7 +53,7 @@ st.write(css, unsafe_allow_html=True)
 st.markdown("""     
             <style>         
                      
-            [class='st-emotion-cache-pkbazv] {             
+            .st-emotion-cache-pkbazv {             
             color: rgb(255, 255, 255); 
                      
             }     
