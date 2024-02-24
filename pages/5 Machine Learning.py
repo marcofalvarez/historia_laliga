@@ -7,14 +7,25 @@ import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 # from datetime import datetime
 # from datetime import date
+import plotly.figure_factory as ff
 
 import pages.modules.preparing_tables as tables
 import pages.modules.ml_clusters as ml
 
+from sklearn.cluster import AgglomerativeClustering
+
+from scipy.spatial import distance_matrix 
+
+from scipy.cluster.hierarchy import ClusterWarning
+from warnings import simplefilter
+simplefilter("ignore", ClusterWarning)
+
+from scipy.cluster import hierarchy
+
 st.set_page_config(page_title= "Machine Learning",
-                   layout='centered',
+                #    layout='centered',
                    page_icon= ":soccer:",
-                #    layout="wide"
+                   layout="wide"
                 )
 # st.sidebar.header('Menú')
 st.title('Verificación de hipótesis')
@@ -33,9 +44,9 @@ st.markdown(
 
         Estos hechos los hemos verificado mediante la exploración de datos. Hemos visto la fluctuación de puntos
         así como el número de equipos cambiar a lo largo de los años.  
-        La diferencia en los gráficos temporales muestran una importante variabilidad y nos llegamos a preguntar  
+        La diferencia en los gráficos temporales muestran una importante variabilidad y nos llegamos a preguntar 
         cual o cuales son los umbrales en el tiempo dónde el fútbol ha cambiado significativamente. 
-        Al mismo tiempo nos preguntamos cómo se comparan los equipos entre si, cúales han obtenido un rendimiento  
+        Al mismo tiempo nos preguntamos cómo se comparan los equipos entre si, cúales han obtenido un rendimiento 
         sobresaliente y han dominado en períodos de tiempo considerable.
 
         Para responder a estas preguntas usamos algorítmos de Machine Learning. Los métodos que más se adaptan a 
@@ -244,3 +255,36 @@ with st.expander("explicación"):
          es necesario recopilar más datos por partido y por jugador.  
             '''
         )
+st.divider()
+df = ml.df_equipos('data/clasificacion.csv')
+equipos = df.Equipo.tolist()
+
+X = ml.scalertransform(df)
+
+dist_matrix = distance_matrix(X,X)
+
+fig = ff.create_dendrogram(dist_matrix, 
+                           color_threshold=8, 
+                           orientation='bottom', 
+                           labels=equipos)
+fig.update_layout(width=1200, height=500)
+st.plotly_chart(fig, use_container_width=True)
+
+st.divider()
+
+agglom = AgglomerativeClustering(n_clusters = 4, linkage = "complete")
+agglom.fit(X)
+
+df['agglom'] = agglom.labels_
+df['agglom']= df["agglom"].astype('string')
+dc = df.sort_values(by=['agglom'])
+scfig = px.scatter(dc, x = dc.PG, y = dc.PP,  size=dc.PT, color = dc.agglom, hover_data=['Equipo'],)
+scfig.update_layout(
+    title="Summary",
+    xaxis_title="Partidos Ganados",
+    yaxis_title="Partidos Perdidos",
+    legend_title="Agrupaciones",
+    )
+st.plotly_chart(scfig, use_container_width=True)
+
+st.divider()

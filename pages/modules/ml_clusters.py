@@ -7,6 +7,17 @@ from datetime import date
 import sklearn
 from sklearn.preprocessing import StandardScaler, MinMaxScaler
 from sklearn.cluster import KMeans
+import plotly.figure_factory as ff
+import plotly.express as px
+from sklearn.cluster import AgglomerativeClustering
+
+from scipy.spatial import distance_matrix 
+
+from scipy.cluster.hierarchy import ClusterWarning
+from warnings import simplefilter
+simplefilter("ignore", ClusterWarning)
+
+from scipy.cluster import hierarchy
 
 @st.cache_data
 def group_temporadas(_csv_file):
@@ -55,3 +66,15 @@ def inertias(data):
         inercias.append(kmeans.inertia_) 
 
     return inercias
+
+@st.cache_data
+def df_equipos(_csv_file):
+    df = pd.read_csv(_csv_file)
+    df = df.groupby('Equipo').sum(numeric_only=True).reset_index()
+    return df
+
+@st.cache_data
+def scalertransform(df):
+    x_scaler = MinMaxScaler()
+    X = x_scaler.fit_transform(df.iloc[:,2:])
+    return X
