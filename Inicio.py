@@ -21,7 +21,7 @@ st.divider()
 st.markdown(
     '''    
          ### Hemos dividido la información en 4 páginas:
-            1.Resumen:     
+            1.Resumen:   
                         Contiene información general de los equipos con más participaciones 
                         más participaciones en la liga (más de 20). Podrás explorar sus 
                         úbicaciones geográficas el número de trofeos de La Liga y cuándo 
