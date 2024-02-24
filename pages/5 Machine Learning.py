@@ -65,7 +65,7 @@ st.markdown(
         este tipo de preguntas son los modelos no supervisados. Para aprender sobre cambios en el tiempo usamos 
         Kmeans, hemos observado una posible tendencia en los últimos 40 años, cambios en las leyes de puntos y el 
         número de quipos podría influeciar esto. Por otro lado, para estudiar la diferencia entre los equipos 
-        usamos un método de aglomeración jérarquico para identificar los equipos más exitosos y más dominantes.   
+        usamos un método de agrupación jérarquico para identificar los equipos más exitosos y más dominantes.   
     '''
 )
 st.divider()
@@ -269,6 +269,17 @@ with st.expander("explicación"):
             '''
         )
 st.divider()
+st.subheader('Modelo Agrupamiento Jérarquico')
+st.divider()
+st.markdown(
+    '''Para comparar a los equipos sumamos todas las estadísticas por equipo para todos los años.
+    Para darnos una idea de la "distancia" relativa entre cada equipo hacemos un dendograma.
+    Basado en lo que hemos aprendido sobre los equipos y la dsitribución en el dendograma decidimos 
+    hacer un corte en 4 grupos de equipos. Las siguientes gráficas muestran el dendograma y una 
+    representación de estos 4 grupos en función de datos históricos.
+        '''
+)
+st.divider()
 df = ml.df_equipos('data/clasificacion.csv')
 equipos = df.Equipo.tolist()
 
@@ -282,7 +293,13 @@ fig = ff.create_dendrogram(dist_matrix,
                            labels=equipos)
 fig.update_layout(width=1200, height=500)
 st.plotly_chart(fig, use_container_width=True)
-
+with st.expander("explicación"):
+        st.markdown(
+        '''Podemos ver que las agrupaciones siguen algunas de nuestras observaciones. 
+        Los equipos que han participado más veces y dominado más tiempo se encuentran 
+        en un grupo similar.  
+            '''
+        )
 st.divider()
 
 agglom = AgglomerativeClustering(n_clusters = 4, linkage = "complete")
@@ -309,5 +326,10 @@ scfig.update_layout(
     legend_title="Agrupaciones",
     )
 st.plotly_chart(scfig, use_container_width=True)
-
+with st.expander("explicación"):
+        st.markdown(
+        '''Esta gráfica muestra el resultado del Modelo de Agrupación Jerarquico.
+        El tamaño de los puntos es proporcional al número total de puntos por equipo.
+            '''
+        )
 st.divider()
