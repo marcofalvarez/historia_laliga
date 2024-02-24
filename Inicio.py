@@ -54,7 +54,7 @@ st.markdown("""
             <style>         
                      
             [class='st-emotion-cache-k4gfp0 eczjsme5] {             
-            color: white; 
+            textcolor: white; 
                      
             }     
             </style> """, 
