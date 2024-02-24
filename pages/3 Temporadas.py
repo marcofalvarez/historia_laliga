@@ -62,7 +62,7 @@ css="""
 </style>
 """
 st.write(css, unsafe_allow_html=True)
-
+leyenda = []
 if selec_stat == 'total':
     stat = ['Equipo','Posicion','PT', 'PJ', 'PG', 'PE', 'PP', 'GF','GC']
     # expander = st.expander("Leyenda")
