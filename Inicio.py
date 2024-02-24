@@ -49,11 +49,13 @@ css="""
 </style>
 """
 st.write(css, unsafe_allow_html=True)
-st.markdown("""     <style>         
-            /* Cambiar el color del texto en la barra lateral */         
-            .sidebar .markdown-text {             
-            color: red; 
-            /* Cambia "red" al color que desees */         
+
+st.markdown("""     
+            <style>         
+                     
+            [data-testid='stSidebarNavlink] {             
+            color: white; 
+                     
             }     
             </style> """, 
             unsafe_allow_html=True)
