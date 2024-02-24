@@ -66,8 +66,7 @@ leyenda = []
 if selec_stat == 'total':
     stat = ['Equipo','Posicion','PT', 'PJ', 'PG', 'PE', 'PP', 'GF','GC']
     # expander = st.expander("Leyenda")
-    leyenda = st.markdown(
-            '''
+    leyenda ='''
             'PT':'Puntos Totales',  
             'PJ':'Partidos Jugados',  
             'PG':'Partidos Ganados',  
@@ -76,12 +75,11 @@ if selec_stat == 'total':
             'GF':'Goles a Favor',  
             'GC':'Goles en Contra',  
             '''
-        )
+
 elif selec_stat == 'en casa':
     stat = ['Equipo','Posicion','PT_C', 'PJ_C', 'PG_C', 'PE_C', 'PP_C', 'GF_C', 'GC_C']
     # expander = st.expander("Leyenda")
-    leyenda = st.markdown(
-            '''
+    leyenda = '''
             'PT_C':'Puntos Totales (en casa)',  
             'PJ_C':'Partidos Jugados (en casa)',  
             'PG_C':'Partidos Ganados (en casa)',  
@@ -90,12 +88,11 @@ elif selec_stat == 'en casa':
             'GF_C':'Goles a Favor (en casa)',  
             'GC_C':'Goles en Contra (en casa)',    
             '''
-        )
+
 elif selec_stat == 'de visitante':
     stat = ['Equipo','Posicion','PT_F', 'PJ_F', 'PG_F', 'PE_F', 'PP_F', 'GF_F', 'GC_F']
     # expander = st.expander("Leyenda")
-    leyenda = st.markdown(
-            '''
+    leyenda = '''
             'PT_F':'Puntos Totales (fuera de casa)',  
             'PJ_F':'Partidos Jugados (fuera de casa)',  
             'PG_F':'Partidos Ganados (fuera de casa)',  
@@ -104,7 +101,7 @@ elif selec_stat == 'de visitante':
             'GF_F':'Goles a Favor (fuera de casa)',  
             'GC_F':'Goles en Contra (fuera de casa)'      
             '''
-        )
+        
 make_table = form1.form_submit_button('vale!')
 
 if make_table:
@@ -117,7 +114,7 @@ if make_table:
            #columns_auto_size_mode=ColumnsAutoSizeMode.FIT_CONTENTS)
     
     with st.expander('Leyenda'):
-        leyenda
+        st.markdown(leyenda)
     
     # st.markdown(leyenda)
     st.divider()
