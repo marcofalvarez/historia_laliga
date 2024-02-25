@@ -76,7 +76,7 @@ st.write(css, unsafe_allow_html=True)
 leyenda = []
 if selec_stat == 'TOTAL':
     stat = ['Equipo','Posicion','PT', 'PJ', 'PG', 'PE', 'PP', 'GF','GC']
-    # expander = st.expander("Leyenda")
+    
     leyenda ='''
             'PT':'Puntos Totales',  
             'PJ':'Partidos Jugados',  
@@ -89,7 +89,7 @@ if selec_stat == 'TOTAL':
 
 elif selec_stat == 'LOCAL':
     stat = ['Equipo','Posicion','PT_C', 'PJ_C', 'PG_C', 'PE_C', 'PP_C', 'GF_C', 'GC_C']
-    # expander = st.expander("Leyenda")
+    
     leyenda = '''
             'PT_C':'Puntos Totales (en casa)',  
             'PJ_C':'Partidos Jugados (en casa)',  
@@ -102,7 +102,7 @@ elif selec_stat == 'LOCAL':
 
 elif selec_stat == 'VISITANTE':
     stat = ['Equipo','Posicion','PT_F', 'PJ_F', 'PG_F', 'PE_F', 'PP_F', 'GF_F', 'GC_F']
-    # expander = st.expander("Leyenda")
+    
     leyenda = '''
             'PT_F':'Puntos Totales (fuera de casa)',  
             'PJ_F':'Partidos Jugados (fuera de casa)',  

@@ -41,7 +41,9 @@ st.markdown("""
 
 # st.sidebar.header('Menú')
 st.title('Verificación de hipótesis')
+
 st.divider()
+
 st.markdown(
     '''
         En nuestra busqueda bibliográfica hemos aprendido varias cosas:   
@@ -69,7 +71,9 @@ st.markdown(
     '''
 )
 st.divider()
+
 st.subheader('Modelo Kmeans')
+
 st.divider()
 st.markdown(
     '''Para estudiar los cambios temporales tomamos los primeros 10 equipos de cada temporada y calculamos la media
@@ -81,24 +85,26 @@ st.markdown(
         '''
 )
 st.divider()
-df =ml.group_temporadas("data/clasificacion.csv")
-data = ml.scaling_data(df=df)
-inercias = ml.inertias(data)
 
-ifig = px.line(x=range(1, len(inercias)+1), y=inercias, hover_name=inercias, markers=True)
-ifig.update_layout(title='Inercia en relación a K',
-                   xaxis_title='Ks',
-                   yaxis_title='Inercia')
-st.plotly_chart(ifig, use_container_width=True)
 with st.expander("explicación"):
         st.markdown(
         '''Se denomina a este tipo de gráfico "elbow method" o método del codo. Se utiliza para determinar 
         el cambio en variación en fución del número de agrupaciones. En este caso el 'codo' esta entre 2 y 4.
             
             '''
-        )       
+        )      
 
+df =ml.group_temporadas("data/clasificacion.csv")
+data = ml.scaling_data(df=df)
+inercias = ml.inertias(data)
+ 
+ifig = px.line(x=range(1, len(inercias)+1), y=inercias, hover_name=inercias, markers=True)
+ifig.update_layout(title='Inercia en relación a K',
+                   xaxis_title='Ks',
+                   yaxis_title='Inercia')
+st.plotly_chart(ifig, use_container_width=True)
 
+st.divider()
 df = ml.making_clusters(data, df)
 
 css="""
@@ -108,8 +114,14 @@ css="""
     }
 </style>
 """
-
-# valor_k = st.slider('Escoger un valor de K', 2, 4)
+with st.expander("Observaciones del modelo de agrupación temporal"):
+        st.markdown(
+        '''Las agrupaciones temporales siguen algunas de nuestras observaciones 
+        y estudios bibliográficos. Las divisiones en el tiempo se producen cuando 
+        han habido cambios en el número de equipos en la liga así como 
+        cambios significativos en el reglamento (i.e. formato de puntuación).  
+        '''
+        )
 with st.form('K choice'):
     valor_k = st.radio(
     "Escoger un valor de K",
@@ -259,17 +271,10 @@ with st.form('K choice'):
             fig.update_yaxes(title_text="<b>Cluster</b> agrupaciones", secondary_y=True)
             st.plotly_chart(fig, use_container_width=True)
 
-with st.expander("explicación"):
-        st.markdown(
-        '''Podemos ver que las agrupaciones temporales siguen algunas de nuestras observaciones 
-        y estudios bibliográficos sobre los cambios en el número de equipos en la liga así como 
-        cambios en el número de puntos. La próxima pregunta a resolver será para aprender más 
-        sobre diferencias entre el tipo de juego a través del tiempo. Para este tipo de estudios 
-         es necesario recopilar más datos por partido y por jugador.  
-            '''
-        )
 st.divider()
+
 st.subheader('Modelo Agrupamiento Jérarquico')
+
 st.divider()
 st.markdown(
     '''Para comparar a los equipos sumamos todas las estadísticas por equipo para todos los años.
@@ -286,6 +291,7 @@ equipos = df.Equipo.tolist()
 X = ml.scalertransform(df)
 
 dist_matrix = distance_matrix(X,X)
+
 with st.expander("Instrucciones"):
         st.markdown(
             '''
@@ -301,7 +307,7 @@ fig = ff.create_dendrogram(dist_matrix,
                            labels=equipos)
 fig.update_layout(width=1200, height=500)
 st.plotly_chart(fig, use_container_width=True)
-with st.expander("explicación"):
+with st.expander("Observaciones sobre el modelo Agrupamiento Jérarquico"):
         st.markdown(
         '''Podemos ver que las agrupaciones siguen algunas de nuestras observaciones. 
         Los equipos que han participado más veces y dominado más tiempo se encuentran 

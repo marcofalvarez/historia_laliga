@@ -88,7 +88,7 @@ dm = tables.mapa_talbe('data/estadios.csv', 'data/clasificacion.csv')
 
 with col2:
     st.subheader('''Mapa de la ubicación de los equipos   ''')
-    with st.expander("explicación"):
+    with st.expander("Instrucciones"):
         st.markdown(
         '''
             1- El tamaño de las columans corresponde a la cantidad de veces que el equipo participó en
