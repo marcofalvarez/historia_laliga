@@ -11,25 +11,34 @@ import pydeck as pdk
 
 import pages.modules.preparing_tables as tables
 import pages.modules.ml_clusters as ml
-
 st.set_page_config(page_title= "Resumen",
                    page_icon= ":soccer:",
                    layout="wide")
 st.title("Resumen de la Historia de La Liga")
 st.divider()
 st.markdown(
-        '''
-            ## Cuales son los actores más importantes y cuales son los trazos más importantes que han marcado la historia de La Liga ?
-            
-            Los siguientes gráficos te daran un resumen general de lo que ha pasado desde 1928.
-            En la historia de la liga han habido 71 equipos que han participado. Varios equipos han participado
-            continuamente en el torneo desde su inicio. 
-            A pesar de haber tantos equipos que han participado consistentement, son muy pocos los que han ganado esta copa.
-            Hemos escogido los equipos que han participado 20 veces o más para hacer las siguientes gráficas que muestran
-            su úbicación geográfica, la cantidad de veces que han partciciado y el número de trofeos que han obtenido.     
-                
-'''
-    )
+    '''
+    ## Explorando la Historia de La Liga Española
+
+    ¿Quiénes son los actores más importantes y cuáles son los momentos clave que han marcado la historia de La Liga?
+
+    A continuación, te presentamos un resumen general desde 1928 hasta la actualidad:
+    '''
+)
+
+st.markdown(
+    '''
+    ## Participación de Equipos
+
+    Desde su inicio en 1928, un total de 71 equipos han participado en La Liga. 
+    Algunos equipos han mantenido su presencia constante en el torneo a lo largo de los años.
+    Sin embargo, son muy pocos los que han logrado alzarse con el trofeo.
+    Hemos seleccionado aquellos equipos que han participado en 20 o más temporadas para presentar la siguiente información:
+    - Su ubicación geográfica.
+    - La cantidad de veces que han participado en el torneo.
+    - El número de trofeos que han obtenido.
+    '''
+)
 st.divider()
 css="""
 <style>
@@ -46,7 +55,7 @@ df = tables.sunb_table('data/clasificacion.csv')
 #grafico de bara con equipos que han participado mas de 20 veces
 with col1:
     st.subheader(
-        '''Quién ha ganado La Liga
+        '''¿Quién ha ganado La Liga?
               
             
 '''
@@ -62,17 +71,18 @@ with col1:
                 #   title = "Quién ha ganado la liga"
                  )
     #sunfig.update_traces(textinfo = "label+percent parent")
-    st.plotly_chart(sunfig, 
+    st.plotly_chart(sunfig,
                     use_container_width=True,
                     )
-    
-    with st.expander("Instrucciones"):
-        st.markdown(
-            '''
-                1- Pasar el cursor sobre las gráfica (acción -hover) o hacer click en True/False para aprender más sobre
-                los participantes y ganadores de La Liga.
+
+    st.info(
         '''
-        )
+        **Instrucciones:**
+
+        1. Pasa el cursor sobre la gráfica para ver información detallada sobre los participantes y ganadores de La Liga.
+        2. Haz clic en los elementos de la gráfica para explorar diferentes niveles de detalle.
+        '''
+    )
 
 
 # código para hacer el mapa con la ubicación de los estadios
@@ -191,7 +201,7 @@ with st.form('K choice'):
     ["2", "3", "4"],
     # captions = ["", "", ""],
     )
-    presionar = st.form_submit_button("Vale!")
+    presionar = st.form_submit_button("¡Vale!")
     if presionar:
         if valor_k == "2":
 

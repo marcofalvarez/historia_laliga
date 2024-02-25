@@ -16,43 +16,36 @@ st.title("Resultados al final de temporada")
 st.divider()
 
 #Use the menu on the right to customize the table that you want to display. 
-#Once the you are happy with your selection select Vale!. 
+#Once the you are happy with your selection select ¡Vale!.
 st.markdown(
         '''
-            ## Esta es una ventana en el tiempo para cada temporada!
-            Esta página te permite apresiar los detalles más importantes por temporada  
-
+            ## ¡Esta es una ventana en el tiempo para cada temporada!
+            Esta página te permite apreciar los detalles más importantes por temporada.
         '''
 )
 
-with st.expander("Instrucciones"):
-                st.markdown(
-        '''           
-                1- Escoger la temporada que te interese,  
-                2- Escoger cuales posiciones quieres ver
-                   (posición corresponde 1 al equipo ganador)  
-                3- Ecoger el tipo de estádisticas  
-                4- Hacer click en Vale!  
-                5- Pasar el cursor sobre la gráfica (acción -hover)
-                   para obtener el detalle de las estádisticas
-                   dentro de las gráficas  
-                
-                '''
-                )
-#funcion para cargar la tabla excel
+st.info(
+    '''           
+            1. Escoger la temporada que te interese. 
+            2. Escoger cuáles posiciones quieres ver (posición corresponde 1 al equipo ganador)  
+            3. Escoger el tipo de estadísticas  
+            4. Hacer click en ¡Vale!  
+            5. Pasar el cursor sobre la gráfica (acción -hover) para obtener el detalle de las estadísticas dentro de las gráficas.
+            '''
+)
+
+#Funcion para cargar la tabla excel
 
 df = tables.generic_table2("data/clasificacion.csv")
 # st.dataframe(data=df)
-
-
 
 form1 = st.sidebar.form(key='opciones_tabla')
 temps = df['Temporada'].unique().tolist()
 pos = df['Posicion'].unique().tolist()
 stat = []
-selec_temp = form1.selectbox('escoger una temporada', temps, )
-selec_pos = form1.slider(label='escoger una o más posiciones en la tabla', min_value= min(pos), max_value= max(pos),value=(1,3))
-selec_stat = form1.radio('escojer el tipo de estadística',('total', 'en casa', 'de visitante'))
+selec_temp = form1.selectbox('Escoger una temporada', temps, )
+selec_pos = form1.slider(label='Escoger una o más posiciones en la tabla', min_value= min(pos), max_value= max(pos),value=(1,3))
+selec_stat = form1.radio('Escoger el tipo de estadística',('Total', 'En casa', 'Visitante'))
 
 css="""
 <style>
@@ -63,7 +56,7 @@ css="""
 """
 st.write(css, unsafe_allow_html=True)
 
-if selec_stat == 'total':
+if selec_stat == 'Total':
     stat = ['Equipo','Posicion','PT', 'PJ', 'PG', 'PE', 'PP', 'GF','GC']
     with st.expander("Leyenda"):
           leyenda = (
@@ -77,7 +70,7 @@ if selec_stat == 'total':
             'GC':'Goles en Contra',  
             '''
         )
-elif selec_stat == 'en casa':
+elif selec_stat == 'En casa':
     stat = ['Equipo','Posicion','PT_C', 'PJ_C', 'PG_C', 'PE_C', 'PP_C', 'GF_C', 'GC_C']
     with st.expander("Leyenda"):
           leyenda = (
@@ -91,7 +84,7 @@ elif selec_stat == 'en casa':
             'GC_C':'Goles en Contra (en casa)',    
             '''
         )
-elif selec_stat == 'de visitante':
+elif selec_stat == 'Visitante':
     stat = ['Equipo','Posicion','PT_F', 'PJ_F', 'PG_F', 'PE_F', 'PP_F', 'GF_F', 'GC_F']
     with st.expander("Leyenda"):
           leyenda = (
@@ -105,7 +98,7 @@ elif selec_stat == 'de visitante':
             'GC_F':'Goles en Contra (fuera de casa)'      
             '''
         )
-make_table = form1.form_submit_button('vale!')
+make_table = form1.form_submit_button('¡Vale!')
 
 if make_table:
     
@@ -126,10 +119,10 @@ if make_table:
     fig = px.bar(df_stat, 
                  x="Equipo", 
                  y=partidos, 
-                 title="Points and games played")
+                 title="Puntos y partidos jugados")
     fig.add_scatter(x=df_stat['Equipo'], 
                 y=df_stat[puntos], 
-                name = 'Points')
+                name = 'Puntos')
     st.plotly_chart(fig)
     st.divider()
 
@@ -142,19 +135,17 @@ if make_table:
     gfig.add_trace(go.Scatter(x = df_stat[equipo], 
                            y = -(df_stat[goles_c]), 
                            fill='tonexty', 
-                           name='goles en contra')) # fill down to next y
+                           name='Goles en contra')) # fill down to next y
     gfig.add_trace(go.Scatter(x = df_stat[equipo], 
                            y = df_stat[goles_f], 
                            fill='tozeroy', 
-                           name='goles a favor')) # fill down to xaxis
+                           name='Goles a favor')) # fill down to xaxis
 
     #gfig.update_traces(stackgroup=1)
     #   Set x-axis title
     gfig.update_xaxes(title_text="Diferencia de Goles")
 
-    st.plotly_chart(gfig,
-                    use_container_width=True,
-                    )
+    st.plotly_chart(gfig, use_container_width=True)
     st.divider()
 
 

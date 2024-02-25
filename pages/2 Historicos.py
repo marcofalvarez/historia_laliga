@@ -19,8 +19,8 @@ form2 = st.sidebar.form(key='opciones_historicos')
 
 tipo_datos = form2.radio('Escoge los datos que quieres ver', 
                          ['de ganadores de La Liga', 'por equipo'],
-                         captions=["resumen general para el equipo ganadar para cada temporada", "comparación entre equipos"])
-hist_graphs = form2.form_submit_button('vale!')
+                         captions=["Resumen general para el equipo ganador para cada temporada", "Comparación entre equipos"])
+hist_graphs = form2.form_submit_button('¡Vale!')
 
 
 css="""
@@ -32,30 +32,30 @@ css="""
 """
 st.write(css, unsafe_allow_html=True)
 
+
+def mostrar_instrucciones():
+    st.info(
+        '''
+        **Instrucciones:**
+
+        1. Escoge una o más estadísticas que te interesen.
+        2. Haz clic en "¡Vale!".
+        3. Pasa el cursor sobre la gráfica para obtener más información sobre el equipo ganador de cada temporada de La Liga.
+        4. Puedes cambiar la resolución temporal mediante el menú en la parte superior de la gráfica o directamente utilizando el control deslizante ubicado debajo de la misma. Desliza el cursor del mouse cuando aparezcan las flechas dobles.
+        '''
+    )
+
+
 #si selecciona las estadísticas históricas para el equipo ganador de la copa
 if tipo_datos == 'de ganadores de La Liga':
     st.markdown(
         '''
-            ## Qué esfuerzo se requiere para ganar La Liga?
+            ## ¿Qué esfuerzo se requiere para ganar La Liga?
             Este gráfico pretende contestar a esta pregunta así cómo
-            darnos pistas sobre la evolución a través del tiempo   
+            darnos pistas sobre la evolución a través del tiempo.
                 '''
     )
-    with st.expander("Instrucciones"):
-        st.markdown(
-        '''       
-                1- Escoger una o más estadisticas que te interesen,  
-                2- Hacer click en Vale!  
-                3- Pasar el cursor sobre la gráfica (acción -hover)
-                   para saber más sobre el equipo ganador de cada
-                   temporada de La Liga  
-                4- Puedes cambiar la resolución temporal mediante
-                   el menú a la cabeza de la gráfica o directamente
-                   en el control deslizante abajo de la gráfica.
-                   Desliza con tu mouse cuando el cursor muestre la
-                   doble flecha.
-        '''
-        )
+    mostrar_instrucciones()
 
 
     #funcion para cargar la tabla excel
@@ -66,8 +66,8 @@ if tipo_datos == 'de ganadores de La Liga':
     #hacer el cuadro con los equipos escogidos
     formg = st.form(key='opciones_grafico')
     opciones_i = df.columns[4:]
-    opciones_f = formg.multiselect('Estadísticas de los ganadores de La Liga', opciones_i)
-    make_eleccion = formg.form_submit_button('vale!')
+    opciones_f = formg.multiselect('Estadísticas de los ganadores de La Liga', opciones_i, placeholder='Elija una opción')
+    make_eleccion = formg.form_submit_button('¡Vale!')
 
     #indicar los gráficos por hacer en funcion de equipos escogidos por el usuario
     if make_eleccion:
@@ -84,7 +84,7 @@ if tipo_datos == 'de ganadores de La Liga':
                     rangeselector=dict(
                         buttons=list([
                             dict(count=10,
-                                label="1 decada",
+                                label="1 década",
                                 step="year",
                                 stepmode="backward"),
                             dict(count=25,
@@ -117,27 +117,13 @@ if tipo_datos == 'de ganadores de La Liga':
 else:
     st.markdown(
         '''
-            ## Cómo se comparan los equipos entre si?
-            Este gráfico pretende contestar a esta pregunta así cómo
-            darnos pistas sobre la evolución a través del tiempo  
+            ## ¿Cómo se comparan los equipos entre sí?
+            Este gráfico pretende contestar a esta pregunta así como
+            darnos pistas sobre la evolución a través del tiempo.
+            '''
+    )
 
-                '''
-    )
-    with st.expander("Instrucciones"):
-        st.markdown(
-        '''       
-                1- Escoger uno o más equipos que quieras comparar,  
-                2- Escoger una o más estadisticas que te interesen,  
-                3- Hacer click en Vale!  
-                3- Pasar el cursor sobre la gráfica (acción -hover)
-                   para saber ver el detalle de la estadística. 
-                4- Puedes cambiar la resolución temporal mediante
-                   el menú a la cabeza de la gráfica o directamente
-                   en el control deslizante abajo de la gráfica.
-                   Desliza con tu mouse cuando el cursor muestre la
-                   doble flecha
-'''
-    )
+    mostrar_instrucciones()
     
     df = tables.generic_table1('data/clasificacion.csv')
 
@@ -148,9 +134,9 @@ else:
     opciones_eq = formeq.multiselect('Escoge un equipo', lista_eq)
     
     lista_es = df.columns[4:]
-    opciones_est = formeq.multiselect('Escoge una stadísticas ', lista_es)
+    opciones_est = formeq.multiselect('Escoge una estadística ', lista_es)
     
-    make_eq = formeq.form_submit_button('vale!')
+    make_eq = formeq.form_submit_button('¡Vale!')
     cols_f = ['Temp','Posicion','Equipo']
     cols_f.extend(opciones_est)
     df = df[(df["Equipo"].isin(lista_eq))][cols_f]
@@ -171,7 +157,7 @@ else:
                     rangeselector=dict(
                         buttons=list([
                             dict(count=10,
-                                label="1 decada",
+                                label="1 década",
                                 step="year",
                                 stepmode="backward"),
                             dict(count=25,

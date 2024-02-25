@@ -24,8 +24,8 @@ df = data_upload()
 form1 = st.sidebar.form(key='opciones_tabla')
 team = df['Equipo'].unique()
 stat = []
-selec_team = form1.selectbox('ESCOGE UN EQUIPO', team) #, format_func=lambda x: f"{x}")
-selec_stat = form1.radio('ESCOJA EL TIPO DE ESTADÍSTICA',('TOTAL', 'LOCAL', 'VISITANTE'))
+selec_team = form1.selectbox('Escoge un equipo', team) #, format_func=lambda x: f"{x}")
+selec_stat = form1.radio('Escoge el tipo de estadística',('Total', 'Local', 'Visitante'))
 css="""
 <style>
     [data-testid="stForm"] {
@@ -36,22 +36,25 @@ css="""
 st.write(css, unsafe_allow_html=True)
 
 
-if selec_stat == 'TOTAL':
-    stat = ['Equipo','Partidos_jugados','Partidos_ganados', 'Partidos_perdidos', 'Partidos_empatados', 'Goles_a_favor', 'Goles_en_contra', 'Porcentaje_victorias', 'Porcentaje_derrotas', 'Porcentaje_empates', 'Media_goles_a_favor', 'Media_goles_en_contra']
-elif selec_stat == 'LOCAL':
-    stat = ['Equipo','Total_partidos_jugados_casa', 'Partidos_ganados_casa', 'Partidos_perdidos_casa', 'Partidos_empatados_casa', 'Porcentaje_victorias_casa', 'Porcentaje_derrotas_casa', 'Porcentaje_empates_casa']
-elif selec_stat == 'VISITANTE':
-    stat = ['Equipo','Total_partidos_jugados_fuera', 'Partidos_ganados_fuera', 'Partidos_perdidos_fuera', 'Partidos_empatados_fuera', 'Porcentaje_victorias_fuera', 'Porcentaje_derrotas_fuera', 'Porcentaje_empates_fuera']
-make_table = form1.form_submit_button('VALE!')
+columnas = {
+    'Total': ['Equipo', 'Partidos_jugados', 'Partidos_ganados', 'Partidos_perdidos', 'Partidos_empatados', 'Goles_a_favor', 'Goles_en_contra', 'Porcentaje_victorias', 'Porcentaje_derrotas', 'Porcentaje_empates', 'Media_goles_a_favor', 'Media_goles_en_contra'],
+    'Local': ['Equipo', 'Total_partidos_jugados_casa', 'Partidos_ganados_casa', 'Partidos_perdidos_casa', 'Partidos_empatados_casa', 'Porcentaje_victorias_casa', 'Porcentaje_derrotas_casa', 'Porcentaje_empates_casa'],
+    'Visitante': ['Equipo', 'Total_partidos_jugados_fuera', 'Partidos_ganados_fuera', 'Partidos_perdidos_fuera', 'Partidos_empatados_fuera', 'Porcentaje_victorias_fuera', 'Porcentaje_derrotas_fuera', 'Porcentaje_empates_fuera']
+}
+
+if selec_stat in columnas:
+    stat = columnas[selec_stat]
+
+make_table = form1.form_submit_button('¡Vale!')
 
 if make_table:
     
-    st.header("EQUIPO: ")
+    st.header("Equipo: ")
     st.subheader(selec_team) 
     st.dataframe(data=df.loc[df['Equipo'] == selec_team, stat])
 
     # Cargar los datos de los escudos
-    escudos_path = "data/ESCUDOS"
+    escudos_path = "data/escudos"
     escudo_filename = f"{selec_team}.png"
     escudo_path = os.path.join(escudos_path, escudo_filename)
 
@@ -59,19 +62,19 @@ if make_table:
     if os.path.exists(escudo_path):
         st.image(escudo_path, caption=selec_team, width=100)
 
-    # Crear el primer gráfico de donut para victorias, derrotas y empates
-    if selec_stat == 'TOTAL':
-        victorias = df.loc[df['Equipo'] == selec_team, 'Partidos_ganados'].values[0]
-        derrotas = df.loc[df['Equipo'] == selec_team, 'Partidos_perdidos'].values[0]
-        empates = df.loc[df['Equipo'] == selec_team, 'Partidos_empatados'].values[0]
-    elif selec_stat == 'LOCAL':
-        victorias = df.loc[df['Equipo'] == selec_team, 'Partidos_ganados_casa'].values[0]
-        derrotas = df.loc[df['Equipo'] == selec_team, 'Partidos_perdidos_casa'].values[0]
-        empates = df.loc[df['Equipo'] == selec_team, 'Partidos_empatados_casa'].values[0]
-    elif selec_stat == 'VISITANTE':
-        victorias = df.loc[df['Equipo'] == selec_team, 'Partidos_ganados_fuera'].values[0]
-        derrotas = df.loc[df['Equipo'] == selec_team, 'Partidos_perdidos_fuera'].values[0]
-        empates = df.loc[df['Equipo'] == selec_team, 'Partidos_empatados_fuera'].values[0]
+    columnas_total = ['Partidos_ganados', 'Partidos_perdidos', 'Partidos_empatados']
+    columnas_local = [col + '_casa' for col in columnas_total]
+    columnas_visitante = [col + '_fuera' for col in columnas_total]
+
+    columnas = {
+        'Total': columnas_total,
+        'Local': columnas_local,
+        'Visitante': columnas_visitante
+    }
+
+    if selec_stat in columnas:
+        victorias, derrotas, empates = [df.loc[df['Equipo'] == selec_team, col].values[0] for col in
+                                        columnas[selec_stat]]
 
     fig_donut_victorias = go.Figure(data=[go.Pie(labels=['Victorias', 'Derrotas', 'Empates'],
                                          values=[victorias, derrotas, empates])])
@@ -184,7 +187,7 @@ if make_table:
         # Columna 2: Mostrar la imagen del estadio
         with col2:
             st.subheader("ESTADIO:")
-            estadio_image_path = os.path.join("data", "Estadios", f"{selec_team}.png")
+            estadio_image_path = os.path.join("data", "estadios", f"{selec_team}.png")
             if os.path.exists(estadio_image_path):
                 st.image(estadio_image_path, caption=selec_team,  width=800)
             else:
@@ -192,9 +195,6 @@ if make_table:
 
     else:
         st.warning("No se encontró información del estadio para el equipo seleccionado.")
-
-
-
 
     # Cargar los datos de los estadios
     clasificacion = pd.read_csv("data/clasificacion.csv")
@@ -267,7 +267,7 @@ if make_table:
     else:
         año_mejor_clasificacion = records_mejor_clasificacion.iloc[0]['Temporada']
         puntos_año_mejor_clasificacion = records_mejor_clasificacion.iloc[0]['PT']
-        st.write(f"Mejor puesto en la clasificación {mejor_clasificacion}º en la temporada{año_mejor_clasificacion} con un total de {puntos_año_mejor_clasificacion} pts")
+        st.write(f"Mejor puesto en la clasificación {mejor_clasificacion}º en la temporada {año_mejor_clasificacion} con un total de {puntos_año_mejor_clasificacion} pts")
 
 
     

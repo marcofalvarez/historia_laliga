@@ -1,46 +1,37 @@
-import streamlit as st 
+import streamlit as st
 
-
-st.set_page_config(page_title= "La Liga",
+st.set_page_config(page_title="La Liga",
                    layout='centered',
-                   page_icon= ":soccer:",
-                #    layout="wide"
-                )
+                   page_icon=":soccer:",
+                   #    layout="wide"
+                   )
 # st.sidebar.header('Menú')
 st.title('Historia de La Liga Española')
 st.divider()
 st.markdown(
     '''
+        <div style="text-align: justify">
         Esta aplicación está diseñada para obtener el máximo de información sobre  
         los resultados históricos de La Liga. En el menú de la izquierda podrás   
         aprender al interactuar con representaciones visuales de los datos desde 1928.  
-    '''
+        </div>
+    ''', unsafe_allow_html=True
 )
-st.divider()  
+st.divider()
 st.markdown(
-    '''    
-         ### Hemos dividido la información en 4 páginas:
-            1. Resumen:     
-                        Contiene información general de los equipos con más participaciones  
-                        más participaciones en la liga (más de 20). Podrás explorar sus   
-                        úbicaciones geográficas el número de trofeos de La Liga y cuándo los  
-                        obtuvieron.   
-            2. Históricos:   
-                        Con estadísticas históricas para los equipos que quieras ver. Podrás  
-                        hacer comparaciones de equipos a través de los años y enfocarte en  
-                        los periodos de tiempo y los datos que más te interesen.   
-                           
-            3. Temporadas:   
-                        Esta página esta diseñada para date un resumen de lo que ha pasado  
-                        cada temporada de La Liga. Podrás escoger el año que te interese y  
-                        descubrir los detalles más interesantes.   
-            4. Equipos:   
-                        Y para conocer más sobre tu equipo favorito o aprender un poco sobre  
-                        algún equipo rival podrás visitar esta página.   
-     '''                       
-    
-)
-css="""
+    '''
+    Hemos dividido la información en 4 páginas:
+
+    1. **Resumen:** Contiene información general de los equipos con más participaciones en la liga (más de 20). Podrás explorar sus ubicaciones geográficas el número de trofeos de La Liga y cuándo los obtuvieron.
+
+    2. **Históricos:** Con estadísticas históricas para los equipos que quieras ver. Podrás hacer comparaciones de equipos a través de los años y enfocarte en los periodos de tiempo y los datos que más te interesen.
+
+    3. **Temporadas:** Esta página esta diseñada para darte un resumen de lo que ha pasado cada temporada de La Liga. Podrás escoger el año que te interese y descubrir los detalles más interesantes.
+
+    4. **Equipos:** Y para conocer más sobre tu equipo favorito o aprender un poco sobre algún equipo rival podrás visitar esta página.
+    ''')
+
+css = """
 <style>
     [data-testid="stMarkdown"] {
         background: LightBlue;
