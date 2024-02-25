@@ -272,7 +272,7 @@ if make_table:
     fig.update_xaxes(type='category')
 
     # Mostrar el gráfico
-    st.plotly_chart(fig)
+    st.plotly_chart(fig, use_container_width=True)
 
     st.write("---")  # Agregar una línea horizontal para separar las estadísticas
 
