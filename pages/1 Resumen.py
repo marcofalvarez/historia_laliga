@@ -11,37 +11,48 @@ import pydeck as pdk
 
 import pages.modules.preparing_tables as tables
 import pages.modules.ml_clusters as ml
-
 st.set_page_config(page_title= "Resumen",
                    page_icon= ":soccer:",
                    layout="wide")
 
-st.markdown("""     
-            <style>         
-                     
-            .st-emotion-cache-pkbazv {             
-            color: rgb(255, 255, 255); 
-                     
-            }     
-            </style> """, 
-            unsafe_allow_html=True,
-            )
+st.markdown("""
+        <style>
+        @font-face {
+            font-family: 'LALIGAText-Regular';
+            src: url('https://assets.laliga.com/assets/public/fonts/LALIGAText-Regular.woff2') format('woff2');
+        }
+
+        *  {
+            font-family: 'LALIGAText-Regular', sans-serif;
+        }
+        </style>
+        """, unsafe_allow_html=True)
 
 st.title("Resumen de la Historia de La Liga")
 st.divider()
 st.markdown(
-        '''
-            ## Cuales son los actores más importantes y cuales son los trazos más importantes que han marcado la historia de La Liga ?
-            
-            Los siguientes gráficos te daran un resumen general de lo que ha pasado desde 1928.
-            En la historia de la liga han habido 71 equipos que han participado. Varios equipos han participado
-            continuamente en el torneo desde su inicio. 
-            A pesar de haber tantos equipos que han participado consistentement, son muy pocos los que han ganado esta copa.
-            Hemos escogido los equipos que han participado 20 veces o más para hacer las siguientes gráficas que muestran
-            su úbicación geográfica, la cantidad de veces que han partciciado y el número de trofeos que han obtenido.     
-                
-'''
-    )
+    '''
+    ## Explorando la Historia de La Liga Española
+
+    ¿Quiénes son los actores más importantes y cuáles son los momentos clave que han marcado la historia de La Liga?
+
+    A continuación, te presentamos un resumen general desde 1928 hasta la actualidad:
+    '''
+)
+
+st.markdown(
+    '''
+    ## Participación de Equipos
+
+    Desde su inicio en 1928, un total de 71 equipos han participado en La Liga. 
+    Algunos equipos han mantenido su presencia constante en el torneo a lo largo de los años.
+    Sin embargo, son muy pocos los que han logrado alzarse con el trofeo.
+    Hemos seleccionado aquellos equipos que han participado en 20 o más temporadas para presentar la siguiente información:
+    - Su ubicación geográfica.
+    - La cantidad de veces que han participado en el torneo.
+    - El número de trofeos que han obtenido.
+    '''
+)
 st.divider()
 css="""
 <style>
@@ -58,7 +69,10 @@ df = tables.sunb_table('data/clasificacion.csv')
 #grafico de bara con equipos que han participado mas de 20 veces
 with col1:
     st.subheader(
-        '''Quién ha ganado La Liga '''
+        '''¿Quién ha ganado La Liga?
+              
+            
+'''
     )
 
     with st.expander("Instrucciones"):
@@ -78,10 +92,20 @@ with col1:
                 #   title = "Quién ha ganado la liga"
                  )
     #sunfig.update_traces(textinfo = "label+percent parent")
-    st.plotly_chart(sunfig, 
+    st.plotly_chart(sunfig,
                     use_container_width=True,
                     )
-    
+
+    st.info(
+        '''
+        **Instrucciones:**
+
+        1. Pasa el cursor sobre la gráfica para ver información detallada sobre los participantes y ganadores de La Liga.
+        2. Haz clic en los elementos de la gráfica para explorar diferentes niveles de detalle.
+        '''
+    )
+
+
 # código para hacer el mapa con la ubicación de los estadios
     
 dm = tables.mapa_talbe('data/estadios.csv', 'data/clasificacion.csv')
@@ -178,4 +202,167 @@ st.plotly_chart(fig,
                 )
 
 st.divider()
+
+df =ml.group_temporadas("data/clasificacion.csv")
+data = ml.scaling_data(df=df)
+inercias = ml.inertias(data)
+
+
+ifig = px.line(x=range(1, len(inercias)+1), y=inercias, hover_name=inercias, markers=True)
+ifig.update_layout(title='Cambios de Inercia en relación a K',
+                   xaxis_title='Ks',
+                   yaxis_title='Inercia')
+st.plotly_chart(ifig, use_container_width=True)
+
+df = ml.making_clusters(data, df)
+
+# valor_k = st.slider('Escoger un valor de K', 2, 4)
+with st.form('K choice'):
+    valor_k = st.radio(
+    "Escoger un valor de K",
+    ["2", "3", "4"],
+    # captions = ["", "", ""],
+    )
+    presionar = st.form_submit_button("¡Vale!")
+    if presionar:
+        if valor_k == "2":
+
+            # Create figure with secondary y-axis
+            fig = make_subplots(specs=[[{"secondary_y": True}]])
+
+            # Add traces
+            fig.add_trace(
+                go.Scatter(x=df['Temp'], 
+                    y=df['PT'], name="PT"),
+                secondary_y=False,
+            )
+            fig.add_trace(
+                go.Scatter(x=df['Temp'], 
+                    y=df['PJ'], name="PJ"),
+                secondary_y=False,
+            )
+
+            fig.add_trace(
+                go.Scatter(x=df['Temp'], 
+                    y=df['PG'], name="PG"),
+                secondary_y=False,
+            )
+
+            fig.add_trace(
+                go.Scatter(x=df['Temp'], 
+                    y=df['PP'], name="PT"),
+                secondary_y=False,
+            )
+            fig.add_trace(
+                go.Scatter(x=df['Temp'], 
+                        y=df['cluster2'], name = 'clusters'),
+                secondary_y=True,
+            )
+
+            # Add figure title
+            fig.update_layout(
+                title_text="clustering"
+            )
+
+            # Set x-axis title
+            fig.update_xaxes(title_text="temp")
+
+            # Set y-axes titles
+            fig.update_yaxes(title_text="<b>Resultados</b> estadisticas", secondary_y=False)
+            fig.update_yaxes(title_text="<b>Cluster</b> agrupaciones", secondary_y=True)
+            st.plotly_chart(fig)
+
+        if valor_k == "3":
+
+            # Create figure with secondary y-axis
+            fig = make_subplots(specs=[[{"secondary_y": True}]])
+
+            # Add traces
+            fig.add_trace(
+                go.Scatter(x=df['Temp'], 
+                    y=df['PT'], name="PT"),
+                secondary_y=False,
+            )
+            fig.add_trace(
+                go.Scatter(x=df['Temp'], 
+                    y=df['PJ'], name="PJ"),
+                secondary_y=False,
+            )
+
+            fig.add_trace(
+                go.Scatter(x=df['Temp'], 
+                    y=df['PG'], name="PG"),
+                secondary_y=False,
+            )
+
+            fig.add_trace(
+                go.Scatter(x=df['Temp'], 
+                    y=df['PP'], name="PT"),
+                secondary_y=False,
+            )
+            fig.add_trace(
+                go.Scatter(x=df['Temp'], 
+                        y=df['cluster3'], name = 'clusters'),
+                secondary_y=True,
+            )
+
+            # Add figure title
+            fig.update_layout(
+                title_text="clustering"
+            )
+
+            # Set x-axis title
+            fig.update_xaxes(title_text="temp")
+
+            # Set y-axes titles
+            fig.update_yaxes(title_text="<b>Resultados</b> estadisticas", secondary_y=False)
+            fig.update_yaxes(title_text="<b>Cluster</b> agrupaciones", secondary_y=True)
+            st.plotly_chart(fig)
+
+        if valor_k == "4":
+
+            # Create figure with secondary y-axis
+            fig = make_subplots(specs=[[{"secondary_y": True}]])
+
+            # Add traces
+            fig.add_trace(
+                go.Scatter(x=df['Temp'], 
+                    y=df['PT'], name="PT"),
+                secondary_y=False,
+            )
+            fig.add_trace(
+                go.Scatter(x=df['Temp'], 
+                    y=df['PJ'], name="PJ"),
+                secondary_y=False,
+            )
+
+            fig.add_trace(
+                go.Scatter(x=df['Temp'], 
+                    y=df['PG'], name="PG"),
+                secondary_y=False,
+            )
+
+            fig.add_trace(
+                go.Scatter(x=df['Temp'], 
+                    y=df['PP'], name="PT"),
+                secondary_y=False,
+            )
+            fig.add_trace(
+                go.Scatter(x=df['Temp'], 
+                        y=df['cluster4'], name = 'clusters'),
+                secondary_y=True,
+            )
+
+            # Add figure title
+            fig.update_layout(
+                title_text="clustering"
+            )
+
+            # Set x-axis title
+            fig.update_xaxes(title_text="temp")
+
+            # Set y-axes titles
+            fig.update_yaxes(title_text="<b>Resultados</b> estadisticas", secondary_y=False)
+            fig.update_yaxes(title_text="<b>Cluster</b> agrupaciones", secondary_y=True)
+            st.plotly_chart(fig, use_container_width=True)
 

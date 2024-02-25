@@ -20,7 +20,7 @@ def data_upload(archivo):
 def generic_tables(archivo):
     df = data_upload(archivo)
     #cambiando el formato de la columna Temporada
-    df['Equipo'] = df['Equipo'].map(lambda x : "Espanyol" if x == "Español" else x)
+
     df['Temp'] = df['Temporada'].map(lambda x : x.split("-")[0])
     df['Temp'] = df['Temp'].astype(str)
 
@@ -32,7 +32,6 @@ def generic_tables(archivo):
 @st.cache_data
 def sunb_table(_csv_file):
     df = data_upload(_csv_file)
-    df['Equipo'] = df['Equipo'].map(lambda x : "Espanyol" if x == "Español" else x)
     #conteo de las veces que cada equipo ha participado en la liga    
     df_part = df.groupby('Equipo').size().reset_index()
     df_part.rename(columns = {'Equipo':'Equipo', 0 :'Participación'}, inplace = True)
