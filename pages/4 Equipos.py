@@ -58,7 +58,7 @@ make_table = form1.form_submit_button('VALE!')
 if make_table:
     
     st.header("EQUIPO: ")
-    col1, col2 = st.columns([1, 3])
+    col1, col2 = st.columns([1, 20])
     
 
     col1.subheader(selec_team)
