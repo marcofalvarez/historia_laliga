@@ -25,6 +25,17 @@ st.markdown("""
         </style>
         """, unsafe_allow_html=True)
 
+st.markdown("""     
+            <style>         
+                     
+            .st-emotion-cache-pkbazv {             
+            color: rgb(255, 255, 255); 
+                     
+            }     
+            </style> """, 
+            unsafe_allow_html=True,
+            )
+
 st.title("Resultados al final de temporada")
 st.divider()
 

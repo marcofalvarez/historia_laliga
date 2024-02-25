@@ -28,6 +28,17 @@ st.markdown("""
         </style>
         """, unsafe_allow_html=True)
 
+st.markdown("""     
+            <style>         
+                     
+            .st-emotion-cache-pkbazv {             
+            color: rgb(255, 255, 255); 
+                     
+            }     
+            </style> """, 
+            unsafe_allow_html=True,
+            )
+
 st.title("Resumen de la Historia de La Liga")
 st.divider()
 st.markdown(

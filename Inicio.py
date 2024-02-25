@@ -23,8 +23,17 @@ st.markdown("""
         }
         </style>
         """, unsafe_allow_html=True)
-# st.sidebar.header('Menú')
 
+st.markdown("""     
+            <style>         
+                     
+            .st-emotion-cache-pkbazv {             
+            color: rgb(255, 255, 255); 
+                     
+            }     
+            </style> """, 
+            unsafe_allow_html=True,
+            )
 
 # Cargar la imagen
 imagen = Image.open('ui/laliga_logo.png')
