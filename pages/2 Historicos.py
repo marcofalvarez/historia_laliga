@@ -43,9 +43,11 @@ st.divider()
 form2 = st.sidebar.form(key='opciones_historicos')
 
 tipo_datos = form2.radio('Escoger los datos a desplegar', 
-                         ['Campeones de La Liga', 'por equipo'],
+                         ['Campeones de La Liga', 'Estadisticas historicas por equipos'],
                          captions=["Cambios en el tiempo del número 1 de La Liga", "Comparación entre equipos"])
-hist_graphs = form2.form_submit_button('¡Vale!')
+
+
+
 
 
 css="""
@@ -57,7 +59,7 @@ css="""
 """
 st.write(css, unsafe_allow_html=True)
 
-if hist_graphs == 'Campeones de La Liga':
+if tipo_datos == 'Campeones de La Liga':
     #si selecciona las estadísticas históricas para el equipo ganador de la copa
     st.markdown(
         '''
@@ -76,11 +78,7 @@ if hist_graphs == 'Campeones de La Liga':
         4. Puedes cambiar la resolución temporal mediante el menú en la parte superior de la gráfica o directamente utilizando el control deslizante ubicado debajo de la misma. Desliza el cursor del mouse cuando aparezcan las flechas dobles.
         '''
     )
-
-
     #funcion para cargar la tabla excel
-
-
     df = tables.part_table('data/clasificacion.csv')
 
     #hacer el cuadro con los equipos escogidos
@@ -89,11 +87,9 @@ if hist_graphs == 'Campeones de La Liga':
     opciones_f = formg.multiselect('Estadísticas de los Campeones de La Liga', opciones_i, placeholder='Elija una opción')
     make_eleccion = formg.form_submit_button('¡Vale!')
 
-    #indicar los gráficos por hacer en funcion de equipos escogidos por el usuario
+    #indicar los gráficos por hacer en funcion de las estadisticas escogidas por el usuario
     if make_eleccion:
-    
-    # Create figures
-
+        # Create figures
         prfig = make_subplots()
         for i, col in enumerate(opciones_f,0):
             prfig.add_trace(go.Scatter(x = df['Temp'], y = df[opciones_f[i]], mode ='lines', name = col, hovertext=df['Equipo']))
@@ -217,3 +213,4 @@ else:
                             )
             st.divider()
 
+hist_graphs = form2.form_submit_button('¡Vale!')
