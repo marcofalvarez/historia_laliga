@@ -25,6 +25,18 @@ st.markdown("""
         }
         </style>
         """, unsafe_allow_html=True)
+
+st.markdown("""     
+            <style>         
+                     
+            .st-emotion-cache-pkbazv {             
+            color: rgb(255, 255, 255); 
+                     
+            }     
+            </style> """, 
+            unsafe_allow_html=True,
+            )
+
 st.title("Estadísticas a lo largo de los años")
 st.divider()
 #opciones al lado de la pagina para 2 tipos de visualizaciones
