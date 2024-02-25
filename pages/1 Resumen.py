@@ -86,11 +86,11 @@ with col1:
 '''
     )
 
-    with st.expander("Instrucciones"):
-        st.markdown(
+    with st.expander("**Instrucciones:**"):
+        st.info(
             '''
-                1- Pasar el cursor sobre las gráfica (acción -hover) o hacer click en True/False para aprender más sobre
-                los participantes y ganadores de La Liga.
+        1. Pasa el cursor sobre la gráfica para ver información detallada sobre los participantes y ganadores de La Liga.
+        2. Haz clic en los elementos de la gráfica para explorar diferentes niveles de detalle.
         '''
         )
 
@@ -123,14 +123,15 @@ dm = tables.mapa_talbe('data/estadios.csv', 'data/clasificacion.csv')
 
 with col2:
     st.subheader('''Mapa de la ubicación de los equipos   ''')
-    with st.expander("Instrucciones"):
-        st.markdown(
+    with st.expander("**Instrucciones:**"):
+        st.info(
         '''
-            1- El tamaño de las columans corresponde a la cantidad de veces que el equipo participó en
-            La Liga. Pasar el cursor sobre mapa (acción -hover) para aprender más sobre los equipos.
-            Usa la rueda del ratón (acción -scroll), pinchar o click + movimiento del ratón para navegar
+            1. El tamaño de las columans corresponde a la cantidad de veces que el equipo participó en
+            La Liga. 
+            2. Pasar el cursor sobre mapa (acción -hover) para aprender más sobre los equipos.  
+            3. Usa la rueda del ratón (acción -scroll), pinchar o click + movimiento del ratón para navegar
             en el mapa o hacer zoom.  
-            Ctr + click te permite cambiar el ángulo de observación en 3 dimensiones.
+            4. Ctr + click te permite cambiar el ángulo de observación en 3 dimensiones.   
             '''
         )       
 
