@@ -57,18 +57,19 @@ css="""
 """
 st.write(css, unsafe_allow_html=True)
 
-
-if hist_graphs:
-
-#si selecciona las estadísticas históricas para el equipo ganador de la copa
-    if tipo_datos == 'de ganadores de La Liga':
-        st.markdown(
+st.markdown(
             '''
                 ## ¿Qué esfuerzo se requiere para ganar La Liga?
                 Este gráfico pretende contestar a esta pregunta así cómo
                 darnos pistas sobre la evolución a través del tiempo.
                     '''
         )
+
+if hist_graphs:
+
+#si selecciona las estadísticas históricas para el equipo ganador de la copa
+    if tipo_datos == 'de ganadores de La Liga':
+        
         with st.expander("**Instrucciones:**"):
             st.info(
             '''
