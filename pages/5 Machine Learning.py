@@ -322,7 +322,7 @@ with st.expander("explicación"):
         El tamaño de los puntos es proporcional al número total de puntos por equipo.
             '''
         )
-agglom = AgglomerativeClustering(n_clusters = 4, linkage = "single")
+agglom = AgglomerativeClustering(n_clusters = 4, linkage = "single", random_state = 42)
 agglom.fit(X)
 
 df['agglom'] = agglom.labels_
