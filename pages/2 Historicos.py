@@ -44,7 +44,7 @@ form2 = st.sidebar.form(key='opciones_historicos')
 
 tipo_datos = form2.radio('Escoger los datos a desplegar', 
                          ['de ganadores de La Liga', 'por equipo'],
-                         captions=["Resumen general para el equipo ganador para cada temporada", "Comparación entre equipos"])
+                         captions=["Cambios en el tiempo del número 1 de La Liga", "Comparación entre equipos"])
 hist_graphs = form2.form_submit_button('¡Vale!')
 
 
@@ -57,19 +57,18 @@ css="""
 """
 st.write(css, unsafe_allow_html=True)
 
-st.markdown(
-            '''
-                ## ¿Qué esfuerzo se requiere para ganar La Liga?
-                Este gráfico pretende contestar a esta pregunta así cómo
-                darnos pistas sobre la evolución a través del tiempo.
-                    '''
-        )
-
 if hist_graphs:
 
 #si selecciona las estadísticas históricas para el equipo ganador de la copa
     if tipo_datos == 'de ganadores de La Liga':
-        
+        st.markdown(
+            '''
+                ## ¿Qué esfuerzo se requiere para ganar La Liga?
+                Este gráfico pretende contestar a esta pregunta así cómo
+                darnos pistas sobre cambios en el tiempo.
+                    '''
+        )
+
         with st.expander("**Instrucciones:**"):
             st.info(
             '''
