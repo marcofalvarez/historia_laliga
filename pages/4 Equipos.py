@@ -13,6 +13,18 @@ st.set_page_config(page_title= "Equipos",
                    layout="wide")
 st.title("Estadísticas de equipos")
 
+with st.expander("Instrucciones"):
+                st.markdown(
+        '''           
+                1- Escoger el equipo que te interese,  
+                2- Ecoger el tipo de estádisticas  
+                3- Hacer click en Vale!  
+                4- Pasar el cursor sobre la gráfica (acción -hover)
+                   para obtener el detalle de las estádisticas
+                   dentro de las gráficas  
+                
+                '''
+                )
 st.markdown("""     
             <style>         
                      
