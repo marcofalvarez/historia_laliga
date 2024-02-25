@@ -305,7 +305,7 @@ if make_table:
     fig.update_xaxes(type='category')
 
     # Mostrar el gráfico
-    st.plotly_chart(fig)
+    st.plotly_chart(fig, use_container_width=True)
 
     st.write("---")  # Agregar una línea horizontal para separar las estadísticas
 
@@ -354,7 +354,7 @@ if make_table:
                           xaxis_title='Temporada', yaxis_title='Puntos', showlegend=True, width = 1300)
 
         # Mostrar el gráfico
-        st.plotly_chart(fig)
+        st.plotly_chart(fig, use_container_width=True)
 
     else:
         st.write("No hay ligas ganadas para mostrar.")
