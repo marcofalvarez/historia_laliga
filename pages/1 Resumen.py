@@ -202,14 +202,3 @@ st.plotly_chart(fig,
                 )
 
 st.divider()
-
-df =ml.group_temporadas("data/clasificacion.csv")
-data = ml.scaling_data(df=df)
-inercias = ml.inertias(data)
-
-
-ifig = px.line(x=range(1, len(inercias)+1), y=inercias, hover_name=inercias, markers=True)
-ifig.update_layout(title='Cambios de Inercia en relación a K',
-                   xaxis_title='Ks',
-                   yaxis_title='Inercia')
-st.plotly_chart(ifig, use_container_width=True)
