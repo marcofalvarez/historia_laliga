@@ -43,7 +43,7 @@ st.divider()
 form2 = st.sidebar.form(key='opciones_historicos')
 
 tipo_datos = form2.radio('Escoger los datos a desplegar', 
-                         ['de ganadores de La Liga', 'por equipo'],
+                         ['Campeones de La Liga', 'por equipo'],
                          captions=["Cambios en el tiempo del número 1 de La Liga", "Comparación entre equipos"])
 hist_graphs = form2.form_submit_button('¡Vale!')
 
@@ -60,7 +60,7 @@ st.write(css, unsafe_allow_html=True)
 if hist_graphs:
 
 #si selecciona las estadísticas históricas para el equipo ganador de la copa
-    if tipo_datos == 'de ganadores de La Liga':
+    if tipo_datos == 'Campeones de La Liga':
         st.markdown(
             '''
                 ## ¿Qué esfuerzo se requiere para ganar La Liga?
@@ -88,18 +88,18 @@ if hist_graphs:
         #hacer el cuadro con los equipos escogidos
         formg = st.form(key='opciones_grafico')
         opciones_i = df.columns[4:]
-        opciones_f = formg.multiselect('Estadísticas de los ganadores de La Liga', opciones_i, placeholder='Elija una opción')
+        opciones_f = formg.multiselect('Estadísticas de los Campeones de La Liga', opciones_i, placeholder='Elija una opción')
         make_eleccion = formg.form_submit_button('¡Vale!')
 
         #indicar los gráficos por hacer en funcion de equipos escogidos por el usuario
         if make_eleccion:
-        #     st.write(opciones_f)
+        
         # Create figures
 
             prfig = make_subplots()
             for i, col in enumerate(opciones_f,0):
                 prfig.add_trace(go.Scatter(x = df['Temp'], y = df[opciones_f[i]], mode ='lines', name = col, hovertext=df['Equipo']))
-                prfig.update_layout(title_text= "Historial del equipo ganador de La Liga por año")
+                prfig.update_layout(title_text= "Historial de los Campeones de La Liga")
 
                 prfig.update_layout(
                     xaxis=dict(
@@ -130,8 +130,8 @@ if hist_graphs:
                         type="date"
                     )
                 )
-            prfig.update_xaxes(title_text="Temporada")
-            st.plotly_chart(prfig,
+                prfig.update_xaxes(title_text="Temporada")
+                st.plotly_chart(prfig,
                             use_container_width=True,
                             )
 
