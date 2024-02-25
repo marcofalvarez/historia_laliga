@@ -56,25 +56,17 @@ elif selec_stat == 'VISITANTE':
 make_table = form1.form_submit_button('VALE!')
 
 if make_table:
+    st.subheader(selec_team)
     
-    st.header("EQUIPO: ")
-    col1, col2 = st.columns([1, 20])
     
+    # Cargar los datos de los escudos
+    escudos_path = "data/ESCUDOS"
+    escudo_filename = f"{selec_team}.png"
+    escudo_path = os.path.join(escudos_path, escudo_filename)
+    # Mostrar el escudo si existe
+    if os.path.exists(escudo_path):
+        st.image(escudo_path, caption=selec_team, width=100)
 
-    col1.subheader(selec_team)
-    
-    with col2:
-        # Cargar los datos de los escudos
-        escudos_path = "data/ESCUDOS"
-        escudo_filename = f"{selec_team}.png"
-        escudo_path = os.path.join(escudos_path, escudo_filename)
-        # Mostrar el escudo si existe
-        if os.path.exists(escudo_path):
-            st.image(escudo_path, caption=selec_team, width=100)
-    
-     
-    
-    
     st.dataframe(data=df.loc[df['Equipo'] == selec_team, stat],hide_index=True)
 
     
