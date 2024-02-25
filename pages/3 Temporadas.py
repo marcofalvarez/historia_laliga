@@ -48,15 +48,16 @@ st.markdown(
         '''
 )
 
-st.info(
-    '''           
+with st.expander("**Instrucciones:**"):
+        st.info(
+            '''           
             1. Escoger la temporada que te interese. 
             2. Escoger cuáles posiciones quieres ver (posición corresponde 1 al equipo ganador)  
             3. Escoger el tipo de estadísticas  
             4. Hacer click en ¡Vale!  
             5. Pasar el cursor sobre la gráfica (acción -hover) para obtener el detalle de las estadísticas dentro de las gráficas.
             '''
-)
+            )
 
 #Funcion para cargar la tabla excel
 

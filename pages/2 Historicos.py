@@ -58,17 +58,7 @@ css="""
 st.write(css, unsafe_allow_html=True)
 
 
-def mostrar_instrucciones():
-    st.info(
-        '''
-        **Instrucciones:**
 
-        1. Escoge una o más estadísticas que te interesen.
-        2. Haz clic en "¡Vale!".
-        3. Pasa el cursor sobre la gráfica para obtener más información sobre el equipo ganador de cada temporada de La Liga.
-        4. Puedes cambiar la resolución temporal mediante el menú en la parte superior de la gráfica o directamente utilizando el control deslizante ubicado debajo de la misma. Desliza el cursor del mouse cuando aparezcan las flechas dobles.
-        '''
-    )
 
 
 #si selecciona las estadísticas históricas para el equipo ganador de la copa
@@ -80,7 +70,15 @@ if tipo_datos == 'de ganadores de La Liga':
             darnos pistas sobre la evolución a través del tiempo.
                 '''
     )
-    mostrar_instrucciones()
+    with st.expander("**Instrucciones:**"):
+        st.info(
+        '''
+        1. Escoge una o más estadísticas que te interesen.
+        2. Haz clic en "¡Vale!".
+        3. Pasa el cursor sobre la gráfica para obtener más información sobre el equipo ganador de cada temporada de La Liga.
+        4. Puedes cambiar la resolución temporal mediante el menú en la parte superior de la gráfica o directamente utilizando el control deslizante ubicado debajo de la misma. Desliza el cursor del mouse cuando aparezcan las flechas dobles.
+        '''
+    )
 
 
     #funcion para cargar la tabla excel
@@ -148,7 +146,16 @@ else:
             '''
     )
 
-    mostrar_instrucciones()
+    with st.expander("**Instrucciones:**"):
+        st.info(
+            '''
+        1. Escoge una o más estadísticas que te interesen.
+        2. Escoge uno o más equipos para comparar.
+        3. Haz clic en "¡Vale!".
+        4. Pasa el cursor sobre la gráfica para obtener más información sobre el equipo ganador de cada temporada de La Liga.
+        5. Puedes cambiar la resolución temporal mediante el menú en la parte superior de la gráfica o directamente utilizando el control deslizante ubicado debajo de la misma. Desliza el cursor del mouse cuando aparezcan las flechas dobles.
+        '''
+        )
     
     df = tables.generic_table1('data/clasificacion.csv')
 

@@ -86,8 +86,8 @@ st.markdown(
 )
 st.divider()
 
-with st.expander("explicación"):
-        st.markdown(
+with st.expander("**Explicación:**"):
+        st.info(
         '''Se denomina a este tipo de gráfico "elbow method" o método del codo. Se utiliza para determinar 
         el cambio en variación en fución del número de agrupaciones. En este caso el 'codo' esta entre 2 y 4.
             
@@ -114,8 +114,8 @@ css="""
     }
 </style>
 """
-with st.expander("Observaciones del modelo de agrupación temporal"):
-        st.markdown(
+with st.expander("**Observaciones del modelo de agrupación temporal:**"):
+        st.info(
         '''Las agrupaciones temporales siguen algunas de nuestras observaciones 
         y estudios bibliográficos. Las divisiones en el tiempo se producen cuando 
         han habido cambios en el número de equipos en la liga así como 
@@ -292,8 +292,8 @@ X = ml.scalertransform(df)
 
 dist_matrix = distance_matrix(X,X)
 
-with st.expander("Instrucciones"):
-        st.markdown(
+with st.expander("**Instrucciones:**"):
+        st.info(
             '''
                 1- Seleccionar con el cursor para ampliar (acción zoom) áreas del gráfico y ver detalle. 
                 Hacer click y arrastrar en el borde de los ejes para estudiar el 
@@ -307,8 +307,9 @@ fig = ff.create_dendrogram(dist_matrix,
                            labels=equipos)
 fig.update_layout(width=1200, height=500)
 st.plotly_chart(fig, use_container_width=True)
-with st.expander("Observaciones sobre el modelo Agrupamiento Jérarquico"):
-        st.markdown(
+
+with st.expander("**Observaciones sobre el modelo Agrupamiento Jérarquico:**"):
+        st.info(
         '''Podemos ver que las agrupaciones siguen algunas de nuestras observaciones. 
         Los equipos que han participado más veces y dominado más tiempo se encuentran 
         en un grupo similar.  
@@ -316,8 +317,8 @@ with st.expander("Observaciones sobre el modelo Agrupamiento Jérarquico"):
         )
 st.divider()
 
-with st.expander("explicación"):
-        st.markdown(
+with st.expander("**Explicación:**"):
+        st.info(
         '''Esta gráfica muestra el resultado del Modelo de Agrupación Jerarquico.
         El tamaño de los puntos es proporcional al número total de puntos por equipo.
             '''

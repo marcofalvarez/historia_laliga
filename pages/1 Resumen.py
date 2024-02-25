@@ -107,15 +107,6 @@ with col1:
                     use_container_width=True,
                     )
 
-    st.info(
-        '''
-        **Instrucciones:**
-
-        1. Pasa el cursor sobre la gráfica para ver información detallada sobre los participantes y ganadores de La Liga.
-        2. Haz clic en los elementos de la gráfica para explorar diferentes niveles de detalle.
-        '''
-    )
-
 
 # código para hacer el mapa con la ubicación de los estadios
     

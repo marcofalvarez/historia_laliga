@@ -26,8 +26,8 @@ st.markdown("""
         """, unsafe_allow_html=True)
 st.title("Estadísticas de equipos")
 
-with st.expander("Instrucciones"):
-                st.markdown(
+with st.expander("**Instrucciones:**"):
+        st.info(
         '''           
                 1- Escoger el equipo que te interese,  
                 2- Ecoger el tipo de estádisticas  
