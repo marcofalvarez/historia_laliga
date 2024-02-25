@@ -81,7 +81,7 @@ if selec_stat == 'Total':
             'GF':'Goles a Favor',  
             'GC':'Goles en Contra',  
             '''
-        )
+
 elif selec_stat == 'En casa':
     stat = ['Equipo','Posicion','PT_C', 'PJ_C', 'PG_C', 'PE_C', 'PP_C', 'GF_C', 'GC_C']
     
@@ -94,7 +94,7 @@ elif selec_stat == 'En casa':
             'GF_C':'Goles a Favor (en casa)',  
             'GC_C':'Goles en Contra (en casa)',    
             '''
-        )
+
 elif selec_stat == 'Visitante':
     stat = ['Equipo','Posicion','PT_F', 'PJ_F', 'PG_F', 'PE_F', 'PP_F', 'GF_F', 'GC_F']
     
@@ -107,7 +107,7 @@ elif selec_stat == 'Visitante':
             'GF_F':'Goles a Favor (fuera de casa)',  
             'GC_F':'Goles en Contra (fuera de casa)'      
             '''
-        )
+
 make_table = form1.form_submit_button('¡Vale!')
 
 if make_table:
