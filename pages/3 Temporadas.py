@@ -61,9 +61,9 @@ form1 = st.sidebar.form(key='opciones_tabla')
 temps = df['Temporada'].unique().tolist()
 pos = df['Posicion'].unique().tolist()
 stat = []
-selec_temp = form1.selectbox('escoger una temporada', temps, )
-selec_pos = form1.slider(label='escoger una o más posiciones en la tabla', min_value= min(pos), max_value= max(pos),value=(1,3))
-selec_stat = form1.radio('escojer el tipo de estadística',('total', 'en casa', 'de visitante'))
+selec_temp = form1.selectbox('Escoger una temporada', temps, )
+selec_pos = form1.slider(label='Escoger una o más posiciones en la tabla', min_value= min(pos), max_value= max(pos),value=(1,3))
+selec_stat = form1.radio('Escojer el tipo de estadística',('TOTAL', 'LOCAL', 'VISITANTE'))
 
 css="""
 <style>
@@ -74,7 +74,7 @@ css="""
 """
 st.write(css, unsafe_allow_html=True)
 leyenda = []
-if selec_stat == 'total':
+if selec_stat == 'TOTAL':
     stat = ['Equipo','Posicion','PT', 'PJ', 'PG', 'PE', 'PP', 'GF','GC']
     # expander = st.expander("Leyenda")
     leyenda ='''
@@ -87,7 +87,7 @@ if selec_stat == 'total':
             'GC':'Goles en Contra',  
             '''
 
-elif selec_stat == 'en casa':
+elif selec_stat == 'LOCAL':
     stat = ['Equipo','Posicion','PT_C', 'PJ_C', 'PG_C', 'PE_C', 'PP_C', 'GF_C', 'GC_C']
     # expander = st.expander("Leyenda")
     leyenda = '''
@@ -100,7 +100,7 @@ elif selec_stat == 'en casa':
             'GC_C':'Goles en Contra (en casa)',    
             '''
 
-elif selec_stat == 'de visitante':
+elif selec_stat == 'VISITANTE':
     stat = ['Equipo','Posicion','PT_F', 'PJ_F', 'PG_F', 'PE_F', 'PP_F', 'GF_F', 'GC_F']
     # expander = st.expander("Leyenda")
     leyenda = '''

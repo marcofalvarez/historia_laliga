@@ -29,7 +29,7 @@ st.divider()
 #opciones al lado de la pagina para 2 tipos de visualizaciones
 form2 = st.sidebar.form(key='opciones_historicos')
 
-tipo_datos = form2.radio('Escoge los datos que quieres ver', 
+tipo_datos = form2.radio('Escoger los datos a desplegar', 
                          ['de ganadores de La Liga', 'por equipo'],
                          captions=["resumen general para el equipo ganadar para cada temporada", "comparación entre equipos"])
 hist_graphs = form2.form_submit_button('vale!')

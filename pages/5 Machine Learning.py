@@ -301,7 +301,15 @@ with st.expander("explicación"):
             '''
         )
 st.divider()
+with st.expander("Instrucciones"):
+        st.markdown(
+            '''
+                1- Seleccionar con el cursor para ampliar (acción zoom) áreas del gráfico y ver detalle. 
+                Hacer click y arrastrar en el borde de los ejes para estudiar el 
+                gráfico después de ampliar el gráfico (zoom).
 
+            '''
+        )
 agglom = AgglomerativeClustering(n_clusters = 4, linkage = "complete")
 agglom.fit(X)
 
