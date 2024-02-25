@@ -35,8 +35,8 @@ df = data_upload()
 form1 = st.sidebar.form(key='opciones_tabla')
 team = df['Equipo'].unique()
 stat = []
-selec_team = form1.selectbox('ESCOGE UN EQUIPO', team) #, format_func=lambda x: f"{x}")
-selec_stat = form1.radio('ESCOJA EL TIPO DE ESTADÍSTICA',('TOTAL', 'LOCAL', 'VISITANTE'))
+selec_team = form1.selectbox('Escoger un equipo', team) #, format_func=lambda x: f"{x}")
+selec_stat = form1.radio('Escoger el tipo de estadística a desplegar',('TOTAL', 'LOCAL', 'VISITANTE'))
 css="""
 <style>
     [data-testid="stForm"] {
