@@ -291,7 +291,7 @@ with st.expander("Instrucciones"):
             '''
                 1- Seleccionar con el cursor para ampliar (acción zoom) áreas del gráfico y ver detalle. 
                 Hacer click y arrastrar en el borde de los ejes para estudiar el 
-                gráfico después de ampliar el gráfico (zoom).
+                gráfico después de ampliarlo (zoom).
 
             '''
         )
@@ -321,7 +321,7 @@ scfig = px.scatter(dc, x = dc.PG, y = dc.PP,
                    color = dc.agglom, 
                    hover_data=['Equipo'],
                    color_discrete_map={
-                        "0": '#9467bd',
+                        "0": '#800000',
                         "1": '#d62728',
                         "2": '#17becf',
                         "3": '#2ca02c',
