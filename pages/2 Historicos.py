@@ -12,6 +12,19 @@ import pages.modules.preparing_tables as tables
 st.set_page_config(page_title= "Históricos",
                    page_icon= ":soccer:",
                    layout="wide")
+
+st.markdown("""
+        <style>
+        @font-face {
+            font-family: 'LALIGAText-Regular';
+            src: url('https://assets.laliga.com/assets/public/fonts/LALIGAText-Regular.woff2') format('woff2');
+        }
+
+        *  {
+            font-family: 'LALIGAText-Regular', sans-serif;
+        }
+        </style>
+        """, unsafe_allow_html=True)
 st.title("Estadísticas a lo largo de los años")
 st.divider()
 #opciones al lado de la pagina para 2 tipos de visualizaciones

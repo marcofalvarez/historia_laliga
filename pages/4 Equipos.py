@@ -11,6 +11,19 @@ import os
 st.set_page_config(page_title= "Equipos",
                    page_icon= ":soccer:",
                    layout="wide")
+
+st.markdown("""
+        <style>
+        @font-face {
+            font-family: 'LALIGAText-Regular';
+            src: url('https://assets.laliga.com/assets/public/fonts/LALIGAText-Regular.woff2') format('woff2');
+        }
+
+        *  {
+            font-family: 'LALIGAText-Regular', sans-serif;
+        }
+        </style>
+        """, unsafe_allow_html=True)
 st.title("Estadísticas de equipos")
 
 #funcion para cargar la tabla 

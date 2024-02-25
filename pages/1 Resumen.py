@@ -14,6 +14,20 @@ import pages.modules.ml_clusters as ml
 st.set_page_config(page_title= "Resumen",
                    page_icon= ":soccer:",
                    layout="wide")
+
+st.markdown("""
+        <style>
+        @font-face {
+            font-family: 'LALIGAText-Regular';
+            src: url('https://assets.laliga.com/assets/public/fonts/LALIGAText-Regular.woff2') format('woff2');
+        }
+
+        *  {
+            font-family: 'LALIGAText-Regular', sans-serif;
+        }
+        </style>
+        """, unsafe_allow_html=True)
+
 st.title("Resumen de la Historia de La Liga")
 st.divider()
 st.markdown(
