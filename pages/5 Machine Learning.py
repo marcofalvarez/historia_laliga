@@ -286,7 +286,15 @@ equipos = df.Equipo.tolist()
 X = ml.scalertransform(df)
 
 dist_matrix = distance_matrix(X,X)
+with st.expander("Instrucciones"):
+        st.markdown(
+            '''
+                1- Seleccionar con el cursor para ampliar (acción zoom) áreas del gráfico y ver detalle. 
+                Hacer click y arrastrar en el borde de los ejes para estudiar el 
+                gráfico después de ampliar el gráfico (zoom).
 
+            '''
+        )
 fig = ff.create_dendrogram(dist_matrix, 
                            color_threshold=8, 
                            orientation='bottom', 
@@ -301,15 +309,7 @@ with st.expander("explicación"):
             '''
         )
 st.divider()
-with st.expander("Instrucciones"):
-        st.markdown(
-            '''
-                1- Seleccionar con el cursor para ampliar (acción zoom) áreas del gráfico y ver detalle. 
-                Hacer click y arrastrar en el borde de los ejes para estudiar el 
-                gráfico después de ampliar el gráfico (zoom).
 
-            '''
-        )
 agglom = AgglomerativeClustering(n_clusters = 4, linkage = "complete")
 agglom.fit(X)
 
