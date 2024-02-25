@@ -302,7 +302,7 @@ with st.expander("Instrucciones"):
             '''
         )
 fig = ff.create_dendrogram(dist_matrix, 
-                           color_threshold=7, 
+                           color_threshold=8, 
                            orientation='bottom', 
                            labels=equipos)
 fig.update_layout(width=1200, height=500)
