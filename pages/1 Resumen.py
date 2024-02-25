@@ -61,7 +61,14 @@ with col1:
         '''Quién ha ganado La Liga '''
     )
 
-with col1:
+    with st.expander("Instrucciones"):
+        st.markdown(
+            '''
+                1- Pasar el cursor sobre las gráfica (acción -hover) o hacer click en True/False para aprender más sobre
+                los participantes y ganadores de La Liga.
+        '''
+        )
+
     sunfig = px.sunburst(data_frame = df,
                   values     = "Participación",
                   path       = ["1Copa_o+", "Equipo"],
@@ -75,21 +82,23 @@ with col1:
                     use_container_width=True,
                     )
     
-    with st.expander("Instrucciones"):
-        st.markdown(
-            '''
-                1- Pasar el cursor sobre las gráfica (acción -hover) o hacer click en True/False para aprender más sobre
-                los participantes y ganadores de La Liga.
-        '''
-        )
-
-
 # código para hacer el mapa con la ubicación de los estadios
     
 dm = tables.mapa_talbe('data/estadios.csv', 'data/clasificacion.csv')
 
 with col2:
     st.subheader('''Mapa de la ubicación de los equipos   ''')
+    with st.expander("explicación"):
+        st.markdown(
+        '''
+            1- El tamaño de las columans corresponde a la cantidad de veces que el equipo participó en
+            La Liga. Pasar el cursor sobre mapa (acción -hover) para aprender más sobre los equipos.
+            Usa la rueda del ratón (acción -scroll), pinchar o click + movimiento del ratón para navegar
+            en el mapa o hacer zoom.  
+            Ctr + click te permite cambiar el ángulo de observación en 3 dimensiones.
+            '''
+        )       
+
     layer = pdk.Layer(
         'ColumnLayer',
         dm,
@@ -133,17 +142,7 @@ with col2:
                     use_container_width=True,
                     )
     
-    with st.expander("explicación"):
-        st.markdown(
-        '''
-            1- El tamaño de las columans corresponde a la cantidad de veces que el equipo participó en
-            La Liga. Pasar el cursor sobre mapa (acción -hover) para aprender más sobre los equipos.
-            Usa la rueda del ratón (acción -scroll), pinchar o click + movimiento del ratón para navegar
-            en el mapa o hacer zoom.  
-            Ctr + click te permite cambiar el ángulo de observación en 3 dimensiones.
-            '''
-        )       
-
+  
 st.divider()
 
 dd = tables.cumsum_table("data/clasificacion.csv")
