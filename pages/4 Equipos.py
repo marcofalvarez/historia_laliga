@@ -64,22 +64,24 @@ if make_table:
     col1.subheader(selec_team)
     
     with col2:
-
+        # Cargar los datos de los escudos
         escudos_path = "data/ESCUDOS"
         escudo_filename = f"{selec_team}.png"
         escudo_path = os.path.join(escudos_path, escudo_filename)
+        # Mostrar el escudo si existe
+        if os.path.exists(escudo_path):
+            st.image(escudo_path, caption=selec_team, width=100)
     
-    st.subheader(selec_team) 
+     
     
     
     st.dataframe(data=df.loc[df['Equipo'] == selec_team, stat],hide_index=True)
 
-    # Cargar los datos de los escudos
+    
     
 
-    # Mostrar el escudo si existe
-    if os.path.exists(escudo_path):
-        st.image(escudo_path, caption=selec_team, width=100)
+    
+    
 
     # Crear el primer gráfico de donut para victorias, derrotas y empates
     if selec_stat == 'TOTAL':
