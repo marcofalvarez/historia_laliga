@@ -94,7 +94,6 @@ if tipo_datos == 'Campeones de La Liga':
         for i, col in enumerate(opciones_f,0):
             prfig.add_trace(go.Scatter(x = df['Temp'], y = df[opciones_f[i]], mode ='lines', name = col, hovertext=df['Equipo']))
             prfig.update_layout(title_text= "Historial de los Campeones de La Liga")
-
             prfig.update_layout(
                 xaxis=dict(
                     rangeselector=dict(
@@ -125,7 +124,7 @@ if tipo_datos == 'Campeones de La Liga':
                 )
             )
             prfig.update_xaxes(title_text="Temporada")
-            st.plotly_chart(prfig,
+        st.plotly_chart(prfig,
                         use_container_width=True,
                         )
 
