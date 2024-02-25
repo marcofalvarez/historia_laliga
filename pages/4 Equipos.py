@@ -58,13 +58,24 @@ make_table = form1.form_submit_button('VALE!')
 if make_table:
     
     st.header("EQUIPO: ")
+    col1, col2 = st.columns([3, 1])
+    
+
+    col1.subheader(selec_team)
+    
+    with col2:
+
+        escudos_path = "data/ESCUDOS"
+        escudo_filename = f"{selec_team}.png"
+        escudo_path = os.path.join(escudos_path, escudo_filename)
+    
     st.subheader(selec_team) 
+    
+    
     st.dataframe(data=df.loc[df['Equipo'] == selec_team, stat],hide_index=True)
 
     # Cargar los datos de los escudos
-    escudos_path = "data/ESCUDOS"
-    escudo_filename = f"{selec_team}.png"
-    escudo_path = os.path.join(escudos_path, escudo_filename)
+    
 
     # Mostrar el escudo si existe
     if os.path.exists(escudo_path):
