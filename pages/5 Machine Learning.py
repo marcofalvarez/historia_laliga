@@ -316,6 +316,12 @@ with st.expander("Observaciones sobre el modelo Agrupamiento Jérarquico"):
         )
 st.divider()
 
+with st.expander("explicación"):
+        st.markdown(
+        '''Esta gráfica muestra el resultado del Modelo de Agrupación Jerarquico.
+        El tamaño de los puntos es proporcional al número total de puntos por equipo.
+            '''
+        )
 agglom = AgglomerativeClustering(n_clusters = 4, linkage = "complete")
 agglom.fit(X)
 
@@ -334,16 +340,11 @@ scfig = px.scatter(dc, x = dc.PG, y = dc.PP,
                    }
                    )
 scfig.update_layout(
-    title="Summary",
+    title="Agrupación Jéraquico para todos los participantes de La Liga",
     xaxis_title="Partidos Ganados",
     yaxis_title="Partidos Perdidos",
     legend_title="Agrupaciones",
     )
 st.plotly_chart(scfig, use_container_width=True)
-with st.expander("explicación"):
-        st.markdown(
-        '''Esta gráfica muestra el resultado del Modelo de Agrupación Jerarquico.
-        El tamaño de los puntos es proporcional al número total de puntos por equipo.
-            '''
-        )
+
 st.divider()

@@ -70,7 +70,7 @@ def inertias(data):
 @st.cache_data
 def df_equipos(_csv_file):
     df = pd.read_csv(_csv_file)
-    df = df.groupby('Equipo').sum(numeric_only=True).reset_index()
+    df = df.groupby('Equipo').mean(numeric_only=True).reset_index()
     return df
 
 @st.cache_data
