@@ -155,10 +155,10 @@ else:
     formeq = st.form(key='opciones_equipos')
     
     lista_eq = list(df['Equipo'].unique())
-    opciones_eq = formeq.multiselect('Escoge un equipo', lista_eq)
+    opciones_eq = formeq.multiselect('Escoge un equipo', lista_eq, placeholder='Elija una opción')
     
     lista_es = df.columns[4:]
-    opciones_est = formeq.multiselect('Escoge una estadística ', lista_es)
+    opciones_est = formeq.multiselect('Escoge una estadística ', lista_es, placeholder='Elija una opción')
     
     make_eq = formeq.form_submit_button('¡Vale!')
 
