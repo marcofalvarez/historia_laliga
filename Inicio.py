@@ -67,7 +67,7 @@ st.markdown(
 st.divider()
 st.markdown(
     '''
-    Hemos dividido la información en 4 páginas:
+    Hemos dividido la información en 5 páginas:
 
     1. **Resumen:** Contiene información general de los equipos con más participaciones en la liga (más de 20). Podrás explorar sus ubicaciones geográficas el número de trofeos de La Liga y cuándo los obtuvieron.
 
@@ -76,6 +76,9 @@ st.markdown(
     3. **Temporadas:** Esta página está diseñada para darte un resumen de lo que ha pasado cada temporada de La Liga. Podrás escoger el año que te interese y descubrir los detalles más interesantes.
 
     4. **Equipos:** Y para conocer más sobre tu equipo favorito o aprender un poco sobre algún equipo rival podrás visitar esta página.
+    
+    5. **Machine Learning:** Cómo podemos organizar la información gracias a la inteligencia artificial.
+    
     ''')
 
 
