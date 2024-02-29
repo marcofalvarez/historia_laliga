@@ -168,7 +168,7 @@ if make_table:
 
     #gfig.update_traces(stackgroup=1)
     #   Set x-axis title
-    gfig.update_xaxes(title_text="Diferencia de Goles")
+    gfig.update_xaxes(title_text="Goles")
 
     st.plotly_chart(gfig, use_container_width=True)
     st.divider()
