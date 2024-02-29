@@ -27,6 +27,18 @@ st.set_page_config(page_title= "Machine Learning",
                    page_icon= ":soccer:",
                    layout="wide"
                 )
+st.markdown("""
+        <style>
+        @font-face {
+            font-family: 'LALIGAText-Regular';
+            src: url('https://assets.laliga.com/assets/public/fonts/LALIGAText-Regular.woff2') format('woff2');
+        }
+
+        *  {
+            font-family: 'LALIGAText-Regular', sans-serif;
+        }
+        </style>
+        """, unsafe_allow_html=True)
 
 st.markdown("""     
             <style>         
@@ -249,7 +261,7 @@ with st.form('K choice'):
 
             fig.add_trace(
                 go.Scatter(x=df['Temp'], 
-                    y=df['PP'], name="PT"),
+                    y=df['PP'], name="PP"),
                 secondary_y=False,
             )
             fig.add_trace(
